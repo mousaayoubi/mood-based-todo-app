@@ -1,0 +1,126 @@
+name: Report PR Stages with Reviewer (Full Payload)
+
+on:
+  pull_request:
+    types: [opened, review_requested, closed]
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up PR context
+        id: context
+        run: |
+          echo "EVENT=${{ github.event_name }}" >> $GITHUB_ENV
+          echo "ACTION=${{ github.event.action }}" >> $GITHUB_ENV
+          echo "REPO=${{ github.repository }}" >> $GITHUB_ENV
+
+      - name: Determine payload details
+        if: github.event_name == 'pull_request' || github.event_name == 'pull_request_review'
+        id: payload
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          STAGE=""
+          REVIEWER=""
+          EVENT_NAME="${{ github.event_name }}"
+          ACTION="${{ github.event.action }}"
+
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            BRANCH="${{ github.event.pull_request.head.ref }}"
+            PULL_ID="${{ github.event.pull_request.id }}"
+            PULL_TITLE="${{ github.event.pull_request.title }}"
+            PULL_URL="${{ github.event.pull_request.html_url }}"
+            AUTHOR="${{ github.event.pull_request.user.login }}"
+            REPO_ID="${{ github.event.repository.id }}"
+            ACTOR="${{ github.event.sender.login }}"
+            MERGED="${{ github.event.pull_request.merged }}"
+
+            case "$ACTION" in
+              opened)
+                STAGE="opened"
+                REVIEWER="${{ github.event.pull_request.requested_reviewers[0].login }}"
+                ;;
+              review_requested)
+                STAGE="review_requested"
+                REVIEWER="${{ github.event.requested_reviewer.login }}"
+                ;;
+              closed)
+                if [ "$MERGED" = "true" ]; then
+                  STAGE="merged"
+                else
+                  STAGE="closed"
+                fi
+                ;;
+              *)
+                STAGE="other"
+                ;;
+            esac
+
+          elif [ "$EVENT_NAME" = "pull_request_review" ]; then
+            STAGE="review_submitted"
+            REVIEWER="${{ github.event.review.user.login }}"
+            BRANCH="${{ github.event.pull_request.head.ref }}"
+            PULL_ID="${{ github.event.pull_request.id }}"
+            PULL_TITLE="${{ github.event.pull_request.title }}"
+            PULL_URL="${{ github.event.pull_request.html_url }}"
+            AUTHOR="${{ github.event.pull_request.user.login }}"
+            REPO_ID="${{ github.event.repository.id }}"
+            ACTOR="${{ github.event.sender.login }}"
+          else
+            echo "Unsupported event type: $EVENT_NAME"
+            exit 1
+          fi
+
+          echo "stage=$STAGE" >> $GITHUB_OUTPUT
+          echo "reviewer=$REVIEWER" >> $GITHUB_OUTPUT
+          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+          echo "pull_id=$PULL_ID" >> $GITHUB_OUTPUT
+          echo "pull_title=$PULL_TITLE" >> $GITHUB_OUTPUT
+          echo "pull_url=$PULL_URL" >> $GITHUB_OUTPUT
+          echo "author=$AUTHOR" >> $GITHUB_OUTPUT
+          echo "repo_id=$REPO_ID" >> $GITHUB_OUTPUT
+          echo "actor=$ACTOR" >> $GITHUB_OUTPUT
+
+
+      - name: Add delay for review_requested actions
+        if: ${{ github.event.pull_request.base.ref == 'main' && steps.payload.outputs.stage == 'review_requested' }}
+        run: |
+          echo "Adding 5-second delay for review_requested action..."
+          sleep 5
+
+
+      - name: Send POST to Webhook
+        if: ${{ github.event.pull_request.base.ref == 'main' }}
+        run: |
+          curl -X POST https://github-pr-dashboard-tracker.automations-3d6.workers.dev \
+          -H "Content-Type: application/json" \
+          -d '{
+            "action": "${{ steps.payload.outputs.stage }}",
+            "pull_request": {
+              "id": ${{ steps.payload.outputs.pull_id }},
+              "bootcamp": "full_stack",
+              "title": "${{ steps.payload.outputs.pull_title }}",
+              "html_url": "${{ steps.payload.outputs.pull_url }}",
+              "head": {
+                "ref": "${{ steps.payload.outputs.branch }}"
+              },
+              "user": {
+                "login": "${{ steps.payload.outputs.author }}"
+              },
+              "requested_reviewers": [
+                {
+                  "login": "${{ steps.payload.outputs.reviewer }}"
+                }
+              ]
+            },
+            "repository": {
+              "id": "${{ steps.payload.outputs.repo_id }}"
+            },
+            "sender": {
+              "login": "${{ steps.payload.outputs.actor }}"
+            }
+          }'
