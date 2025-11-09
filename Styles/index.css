@@ -6,7 +6,24 @@ justify-content: left;
 }
 span#welcome {
 color: white;
+font-size: 1rem;
 }
 span#account {
 color: grey;
+font-size: 0.8rem;
+}
+span#tasks_title {
+color: rgb(157,254,0);
+}
+span#tasks_number {
+color: rgb(161,164,173);
+font-size: 0.5rem;
+padding-right: 50px;
+}
+span#suggested_tasks_title {
+color: white;
+}
+div#tasks.col {
+background-color: rgb(40, 44, 56);
+border-radius: 10px;
 }
