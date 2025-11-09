@@ -1,15 +1,16 @@
 body {
 background-color: rgb(29,30,38) !important;
+font-family: Arial !important;
 }
 nav.navbar {
 justify-content: left;
 }
 span#welcome {
-color: white;
+color: rgb(255,255,255);
 font-size: 1rem;
 }
 span#account {
-color: grey;
+color: rgb(161, 164, 173);
 font-size: 0.8rem;
 }
 span#tasks_title {
@@ -21,7 +22,7 @@ font-size: 0.5rem;
 padding-right: 50px;
 }
 span#suggested_tasks_title {
-color: white;
+color: rgb(255,255,255);
 padding-bottom: 10px;
 }
 div#tasks.col {
@@ -43,7 +44,7 @@ padding-top: 10px;
 padding-bottom: 5px;
 }
 footer {
-color: white;
+color: rgb(255,255,255);
 text-align: center;
 font-size: 0.8rem;
 padding-top: 10px;

@@ -1,8 +1,9 @@
 body {
 background-color: rgb(29,30,38) !important;
+font-family: Arial !important;
 }
 div.container {
-	background-color: rgb(35,39,50);
+	background-color: rgb(42,47,60);
 	padding: 50px;
 	max-width: 500px;
 }
@@ -12,7 +13,7 @@ display: block;
 padding-bottom: 10px;
 }
 h1#header3 {
-color: white;
+color: rgb(255,255,255);;
 }
 h3#header1 {
 color: rgb(157,254,0);
@@ -30,7 +31,7 @@ font-size: 1rem;
 margin-bottom: 20px;
 }
 footer {
-color: white;
+color: rgb(255,255,255);;
 text-align: center;
 font-size: 0.8rem;
 padding-top: 10px;

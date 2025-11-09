@@ -1,8 +1,9 @@
 body {
 background-color: rgb(29,30,38) !important;
+font-family: Arial !important;
 }
 div.container {
-	background-color: rgb(35,39,50);
+	background-color: rgb(42,47,60);
 	padding: 50px;
 	max-width: 500px;
 }
@@ -10,7 +11,7 @@ img#close_icon {
 float: right;
 }
 h3#header1 {
-color: white;
+color: rgb(255,255,255);;
 margin-bottom: 15px;
 }
 button#create_task {
@@ -27,12 +28,12 @@ border-radius: 5px;
 margin-bottom: 15px;
 background-color: rgb(35,39,50);
 border-style: double;
-border-block-color: black;
+border-block-color: rgb(0,0,0);
 width: 400px;
 height: 35px;
 }
 footer {
-color: white;
+color: rgb(255,255,255);;
 text-align: center;
 font-size: 0.8rem;
 padding-top: 10px;
