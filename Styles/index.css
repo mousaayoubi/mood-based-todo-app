@@ -30,6 +30,9 @@ border-radius: 10px;
 margin-right: 10px;
 padding-top: 10px;
 }
+div#added_tasks.col {
+padding-top: 10px;
+}
 div#suggested_tasks.col {
 background-color: rgb(40, 44, 56);
 border-radius: 10px;
