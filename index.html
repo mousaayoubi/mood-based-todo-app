@@ -5,6 +5,7 @@
 		<link rel="icon" type="image/x-icon" href="/Assets/Images/favicon.ico">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="This is a mood based todo app. This page is about the homepage.">
+		<meta charset="UTF-8">
 		<link rel="stylesheet" href="/Styles/index.css" />
 		<!-- Link to Bootstrap for responsive design -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -16,31 +17,31 @@
 				<a class="navbar-brand" href="/index.html">
 					<img src="/Assets/Images/logo.png" alt="logo" width="75" height="75" class="d-inline-block align-left" /></a>
 				<span id="welcome">Welcome <br /><span id="account">Guest</span>
-					<img src="/Assets/Images/spacing.png" width="500" height="50" />
+					<img src="/Assets/Images/spacing.png" alt="spacing bar" width="500" height="50" />
 
-					<a href="/Components/moodSelecterForm.html"><img src="/Assets/Images/mood.png" width="100" height="50" /></a>
-					<img src="/Assets/Images/weather.png" width="50" height="50" />
-					<a href="/Components/loginForm.html"><img src="/Assets/Images/account.png" width="50" height="50" /></a>
+					<a href="/Components/moodSelecterForm.html"><img src="/Assets/Images/mood.png" alt="mood selector icon" width="100" height="50" /></a>
+					<img src="/Assets/Images/weather.png" alt="weather icon" width="50" height="50" />
+					<a href="/Components/loginForm.html"><img src="/Assets/Images/account.png" alt="account icon" width="50" height="50" /></a>
 			</nav>
 			<div class="row">
 				<!-- First column layout -->
 				<div id="tasks" class="col">
-					<span id="tasks_title">Ready for Today?</span><br /><span id="tasks_number">You have 3 tasks planned for today</span><span><a href="/Components/taskCreationForm.html"><img src="/Assets/Images/add_task.png" /></a><img src="/Assets/Images/complete_all.png" /><img src="/Assets/Images/show_completed.png" /></span>
+					<span id="tasks_title">Ready for Today?</span><br /><span id="tasks_number">You have 3 tasks planned for today</span><span><a href="/Components/taskCreationForm.html"><img src="/Assets/Images/add_task.png" alt="add task icon" /></a><img src="/Assets/Images/complete_all.png" alt="complete all icon" /><img src="/Assets/Images/show_completed.png" alt="show completed icon" /></span>
 					<div class="row">
 						<div id="added_tasks" class="col">
-							<img src="/Assets/Images/task_one.png" />
-							<img src="/Assets/Images/task_two.png" />
+							<img src="/Assets/Images/task_one.png" alt="task one card"/>
+							<img src="/Assets/Images/task_two.png" alt="task two card" />
 						</div>
 						<div class="col">
-							<img src="/Assets/Images/task_three.png" />
+							<img src="/Assets/Images/task_three.png" alt="task three card" />
 						</div>
 					</div>
 				</div>
 				<!-- Seconf column layout -->
 				<div id="suggested_tasks" class="col">
 					<span id="suggested_tasks_title">Suggested tasks</span><br />
-					<img class="suggested_tasks_image" src="/Assets/Images/suggested_task_one.png" />
-					<img class="suggested_tasks_image" src="/Assets/Images/suggested_task_two.png" />
+					<img class="suggested_tasks_image" src="/Assets/Images/suggested_task_one.png" alt="suggested task one card" />
+					<img class="suggested_tasks_image" src="/Assets/Images/suggested_task_two.png" alt="suggested task two card" />
 				</div>
 		</div>
 	</body>
