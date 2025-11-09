@@ -23,3 +23,9 @@ margin: auto;
 img#mood_selector{
 margin-top: 20px;
 }
+footer {
+color: white;
+text-align: center;
+font-size: 0.8rem;
+padding-top: 10px;
+}

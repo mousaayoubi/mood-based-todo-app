@@ -42,3 +42,9 @@ img.suggested_tasks_image {
 padding-top: 10px;
 padding-bottom: 5px;
 }
+footer {
+color: white;
+text-align: center;
+font-size: 0.8rem;
+padding-top: 10px;
+}

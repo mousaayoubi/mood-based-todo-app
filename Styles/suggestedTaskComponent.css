@@ -29,3 +29,9 @@ color: rgb(157,254,0);
 font-size: 1rem;
 margin-bottom: 20px;
 }
+footer {
+color: white;
+text-align: center;
+font-size: 0.8rem;
+padding-top: 10px;
+}

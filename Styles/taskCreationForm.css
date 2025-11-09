@@ -31,3 +31,9 @@ border-block-color: black;
 width: 400px;
 height: 35px;
 }
+footer {
+color: white;
+text-align: center;
+font-size: 0.8rem;
+padding-top: 10px;
+}

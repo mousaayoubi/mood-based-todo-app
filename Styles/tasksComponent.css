@@ -16,3 +16,9 @@ h4#header2 {
 color: rgb(161,164,173);
 margin-bottom: 30px;
 }
+footer {
+color: white;
+text-align: center;
+font-size: 0.8rem;
+padding-top: 10px;
+}
