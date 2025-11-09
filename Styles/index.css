@@ -1,0 +1,12 @@
+body {
+background-color: rgb(29,30,38) !important;
+}
+nav.navbar {
+justify-content: left;
+}
+span#welcome {
+color: white;
+}
+span#account {
+color: grey;
+}
