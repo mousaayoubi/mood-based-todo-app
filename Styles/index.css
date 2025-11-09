@@ -22,8 +22,20 @@ padding-right: 50px;
 }
 span#suggested_tasks_title {
 color: white;
+padding-bottom: 10px;
 }
 div#tasks.col {
 background-color: rgb(40, 44, 56);
 border-radius: 10px;
+margin-right: 10px;
+padding-top: 10px;
+}
+div#suggested_tasks.col {
+background-color: rgb(40, 44, 56);
+border-radius: 10px;
+padding-top: 10px;
+}
+img.suggested_tasks_image {
+padding-top: 10px;
+padding-bottom: 5px;
 }
