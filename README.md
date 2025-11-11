@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Moodana | Mood Based ToDo App
 
 Live URL: https://mood-based-todo-app.vercel.app/
