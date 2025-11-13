@@ -38,6 +38,14 @@ border-style: double;
 border-block-color: black;
 width: 400px;
 height: 35px;
+color: rgb(255,255,255);
+padding-left: 10px;
+}
+h6#email_error{
+color: rgb(255,0,0);
+}
+h6#password_error{
+color: rgb(255,0,0);
 }
 footer {
 color: rgb(255,255,255);
