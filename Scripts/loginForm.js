@@ -25,10 +25,14 @@ function handleClick(){
 	localStorage.setItem("email", email);
 	localStorage.setItem("password", password);
 
-	//Redirect to homepage
+	//if lgon successful Redirect to homepage
         if (email.includes('@') && password.length > 8){
 	window.location.href="/";
+
 	}
+
+	console.log('test');
+	document.getElementById('account').innerHTML = localStorage.getItem('name');
 
 }
 

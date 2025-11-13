@@ -43,6 +43,17 @@ img.suggested_tasks_image {
 padding-top: 10px;
 padding-bottom: 5px;
 }
+h5.login_message{
+color: rgb(255,255,255);
+text-align: right;
+font-size: 1rem;
+}
+h6.login_message {
+color: rgb(255,255,255);
+margin-top: -20px;
+text-align: right;
+font-size: 0.8rem;
+}
 footer {
 color: rgb(255,255,255);
 text-align: center;
