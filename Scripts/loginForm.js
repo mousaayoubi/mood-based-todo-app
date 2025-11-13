@@ -10,14 +10,14 @@ function handleClick(){
 	//Validate email
 	if (!email.includes('@')){
 
-		document.getElementById('email_error').innerHTML = "<img src='/Assets/Images/warning_icon.png' alt='warning icon' width='15' height='15' /> Please enter a valid email address";
+		document.getElementById('email_error').innerHTML = "<img src='/Assets/Images/warning_icon.png' alt='warning icon' width='15' height='15' /> Please enter a valid email address.";
 
 	}
 
 	//validate password
 	if (password.length < 8){
 
-		document.getElementById('password_error').innerHTML = "<img src='/Assets/Images/warning_icon.png' alt='warning icon' width='15' height='15' /> Password must be at least 8 characters long";
+		document.getElementById('password_error').innerHTML = "<img src='/Assets/Images/warning_icon.png' alt='warning icon' width='15' height='15' /> Password must be at least 8 characters long.";
 
 	}
 	// Save to localstorage
