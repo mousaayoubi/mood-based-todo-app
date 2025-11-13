@@ -31,7 +31,6 @@ function handleClick(){
 
 	}
 
-	console.log('test');
 	document.getElementById('account').innerHTML = localStorage.getItem('name');
 
 }
