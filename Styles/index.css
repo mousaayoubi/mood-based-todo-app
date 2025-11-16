@@ -39,6 +39,10 @@ background-color: rgb(40, 44, 56);
 border-radius: 10px;
 padding-top: 10px;
 }
+img#check_mark1, img#check_mark2, img#check_mark3 {
+display: block;
+margin-left: auto;
+}
 img.suggested_tasks_image {
 padding-top: 10px;
 padding-bottom: 5px;
@@ -63,6 +67,14 @@ margin-bottom: 5px;
 div#task_name1, div#task_name2, div#task_name3 {
 color: rgb(255,255,255);
 font-size: 0.8rem;
+}
+div#task_duration1, div#task_duration2, div#task_duration3 {
+color: rgb(138,142,152);
+font-size: 0.6rem;
+}
+div#task_time1, div#task_time2, div#task_time3 {
+color: rgb(255,255,255);
+font-size: 1.5rem;
 }
 footer {
 color: rgb(255,255,255);

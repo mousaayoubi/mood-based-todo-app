@@ -8,6 +8,12 @@ const taskName = document.getElementById('task_name').value;
 const taskDuration = document.getElementById('task_duration').value;
 const taskTime = document.getElementById('task_time').value;
 
+formattedTaskTime = taskTime.toLocaleString('en-US', {
+	hour: 'numeric',
+	minute: 'numeric',
+	hour12: true
+});
+
 	//Validate task name
 	if (!taskName){
 	document.getElementById('task_name_error').innerHTML = "<img src='/Assets/Images/warning_icon.png' alt='warning icon' width='15' height='15' /> Name is required.";
@@ -28,7 +34,7 @@ const taskTime = document.getElementById('task_time').value;
 		const tasks = [{
 			'taskName': taskName,
 			'taskDuration': taskDuration,
-			'taskTime': taskTime
+			'taskTime': formattedTaskTime
 		}];
 
 		let data = JSON.parse(localStorage.getItem("tasks")) || {};
