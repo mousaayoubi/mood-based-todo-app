@@ -25,11 +25,31 @@ const taskDate = document.getElementById('task_date').value;
 
 	if (taskName && taskDuration && taskDate){
 
-		localStorage.setItem('taskName', taskName);
+		const tasks = [{
+			'taskName': taskName,
+			'taskDuration': taskDuration,
+			'taskDate': taskDate
+		}];
+
+		let data = JSON.parse(localStorage.getItem("tasks")) || {};
+
+		const newKey = Object.keys(data).length + 1;
+
+		data[newKey] = [{
+                        'taskName': document.getElementById('task_name').value,
+                        'taskDuration': document.getElementById('task_duration').value,
+                        'taskDate': document.getElementById('task_date').value
+                }];
+
+		
+		localStorage.setItem("tasks", JSON.stringify(data));
+
+		console.log(data);
+
+
+		//Clear input fields
 		document.getElementById('task_name_error').innerHTML = '';
-		localStorage.setItem('taskDuration', taskDuration);
 		document.getElementById('task_duration_error').innerHTML = '';
-		localStorage.setItem('taskDate', taskDate);
 		document.getElementById('task_duration_error').innerHTML = '';
 	}
 
