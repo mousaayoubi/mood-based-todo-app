@@ -28,3 +28,14 @@ function handleClick(){
 		window.location.href = "/Components/loginForm.html";
 	}
 }
+
+//Retrieve tasks from localstorage
+const tasks = localStorage.getItem('tasks');
+const data = JSON.parse(tasks);
+
+Object.keys(data).forEach(key => {
+
+	document.getElementById(`task_name${key}`).innerHTML = data[key][0].taskName;
+	document.getElementById(`task_duration${key}`).innerHTML = data[key][0].taskDuration;
+	document.getElementById(`task_time${key}`).innerHTML = data[key][0].taskTime;
+});

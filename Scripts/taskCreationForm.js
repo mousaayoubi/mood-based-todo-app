@@ -6,7 +6,7 @@ function clickHandleCreateTask(){
 
 const taskName = document.getElementById('task_name').value;
 const taskDuration = document.getElementById('task_duration').value;
-const taskDate = document.getElementById('task_date').value;
+const taskTime = document.getElementById('task_time').value;
 
 	//Validate task name
 	if (!taskName){
@@ -19,16 +19,16 @@ const taskDate = document.getElementById('task_date').value;
 	}
 
 	//Validate task date
-	if (!taskDate){
-	document.getElementById('task_date_error').innerHTML = "<img src='/Assets/Images/warning_icon.png' alt='warning icon' width='15' height='15' /> Time is required.";
+	if (!taskTime){
+	document.getElementById('task_time_error').innerHTML = "<img src='/Assets/Images/warning_icon.png' alt='warning icon' width='15' height='15' /> Time is required.";
 	}
 
-	if (taskName && taskDuration && taskDate){
+	if (taskName && taskDuration && taskTime){
 
 		const tasks = [{
 			'taskName': taskName,
 			'taskDuration': taskDuration,
-			'taskDate': taskDate
+			'taskTime': taskTime
 		}];
 
 		let data = JSON.parse(localStorage.getItem("tasks")) || {};
@@ -38,7 +38,8 @@ const taskDate = document.getElementById('task_date').value;
 		data[newKey] = [{
                         'taskName': document.getElementById('task_name').value,
                         'taskDuration': document.getElementById('task_duration').value,
-                        'taskDate': document.getElementById('task_date').value
+                        'taskTime': document.getElementById('task_time').value,
+			'taskStaus': 'Incomplete',
                 }];
 
 		
@@ -50,7 +51,7 @@ const taskDate = document.getElementById('task_date').value;
 		//Clear input fields
 		document.getElementById('task_name_error').innerHTML = '';
 		document.getElementById('task_duration_error').innerHTML = '';
-		document.getElementById('task_duration_error').innerHTML = '';
+		document.getElementById('task_time_error').innerHTML = '';
 	}
 
 }

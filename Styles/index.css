@@ -54,6 +54,16 @@ margin-top: -20px;
 text-align: right;
 font-size: 0.6rem;
 }
+div#task_name_border {
+background-color: rgb(53,59,76);
+border-radius: 5px;
+padding: 15px;
+margin-bottom: 5px;
+}
+div#task_name1, div#task_name2, div#task_name3 {
+color: rgb(255,255,255);
+font-size: 0.8rem;
+}
 footer {
 color: rgb(255,255,255);
 text-align: center;
