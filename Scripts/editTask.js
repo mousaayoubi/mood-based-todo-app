@@ -47,6 +47,7 @@ tasks[1][0].taskDuration = document.getElementById('task_duration').value;
 tasks[1][0].taskTime = document.getElementById('task_time').value;
 
 	localStorage.setItem("tasks", JSON.stringify(tasks));
+	document.getElementById("save_task_success").innerHTML = "Successfully saved changes."
 
 }
 
@@ -62,6 +63,7 @@ tasks[2][0].taskDuration = document.getElementById('task_duration').value;
 tasks[2][0].taskTime = document.getElementById('task_time').value;
 
         localStorage.setItem("tasks", JSON.stringify(tasks));
+	document.getElementById("save_task_success").innerHTML = "Successfully saved changes."
 
 }
 
@@ -77,5 +79,6 @@ tasks[3][0].taskDuration = document.getElementById('task_duration').value;
 tasks[3][0].taskTime = document.getElementById('task_time').value;
 
         localStorage.setItem("tasks", JSON.stringify(tasks));
+	document.getElementById("save_task_success").innerHTML = "Successfully saved changes."
 
 }

@@ -58,6 +58,16 @@ margin-top: -20px;
 text-align: right;
 font-size: 0.6rem;
 }
+.delete_hover a{
+visibility: hidden;
+}
+.delete_hover:hover a {
+visibility: visible;
+}
+img#delete_bin {
+display: block;
+margin: auto;
+}
 div#task_name_border1, div#task_name_border2, div#task_name_border3 {
 background-color: rgb(53,59,76);
 border-radius: 5px;
