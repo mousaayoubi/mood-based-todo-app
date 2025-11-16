@@ -2,7 +2,11 @@
 //Check if name is stored
 const name = localStorage.getItem('name');
 
-if (name){
+//Display default account is guest if no user is logged in
+if (!name) {
+document.getElementById('account').innerHTML = 'Guest';
+} else {
+
 document.getElementById('account').innerHTML = name;
 }
 

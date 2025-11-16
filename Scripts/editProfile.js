@@ -5,6 +5,7 @@ document.querySelector('#name').value = name;
 document.querySelector('#email').value = email;
 
 saveChanges = document.getElementById('save_changes');
+saveChanges = document.getElementById('save_changes');
 
 saveChanges.addEventListener('click', handleSaveChangesClick);
 
