@@ -58,7 +58,7 @@ margin-top: -20px;
 text-align: right;
 font-size: 0.6rem;
 }
-div#task_name_border {
+div#task_name_border1, div#task_name_border2, div#task_name_border3 {
 background-color: rgb(53,59,76);
 border-radius: 5px;
 padding: 15px;

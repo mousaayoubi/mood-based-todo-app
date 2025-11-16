@@ -89,4 +89,33 @@ function handleCompleteTask3() {
         taskTime3.style.textDecoration = 'line-through';
 }
 
+// Load edit task component if first task card is clicked
+const taskCard1 = document.getElementById('task_name_border1');
+
+taskCard1.addEventListener('click', handleTaskCard1);
+
+function handleTaskCard1(){
+	param_id = event.target.id
+	window.location.href = `/Components/editTask.html?param1=${param_id}`;
+}
+
+// Load edit task component if second task card is clicked
+const taskCard2 = document.getElementById('task_name_border2');
+
+taskCard2.addEventListener('click', handleTaskCard2);
+
+function handleTaskCard2(){
+        param_id = event.target.id
+        window.location.href = `/Components/editTask.html?param1=${param_id}`;
+}
+
+// Load edit task component if third task card is clicked
+const taskCard3 = document.getElementById('task_name_border3');
+
+taskCard3.addEventListener('click', handleTaskCard3);
+
+function handleTaskCard3(){
+        param_id = event.target.id
+        window.location.href = `/Components/editTask.html?param1=${param_id}`;
+}
 
