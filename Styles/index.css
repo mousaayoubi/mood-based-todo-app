@@ -64,7 +64,7 @@ visibility: hidden;
 .delete_hover:hover a {
 visibility: visible;
 }
-img#delete_bin {
+img#delete_bin1, img#delete_bin2, img#delete_bin3 {
 display: block;
 margin: auto;
 }

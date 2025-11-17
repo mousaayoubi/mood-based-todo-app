@@ -2,63 +2,41 @@ const createTask = document.getElementById('create_task');
 
 createTask.addEventListener('click', clickHandleCreateTask);
 
-function clickHandleCreateTask(){
+function clickHandleCreateTask() {
+    const taskName = document.getElementById('task_name').value.trim();
+    const taskDuration = document.getElementById('task_duration').value.trim();
+    const taskTime = document.getElementById('task_time').value;
 
-const taskName = document.getElementById('task_name').value;
-const taskDuration = document.getElementById('task_duration').value;
-const taskTime = document.getElementById('task_time').value;
+    const formattedTaskTime = new Date(`1970-01-01T${taskTime}`).toLocaleString('en-US', {
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true
+    });
 
-formattedTaskTime = taskTime.toLocaleString('en-US', {
-	hour: 'numeric',
-	minute: 'numeric',
-	hour12: true
-});
+    // Validation
+    document.getElementById('task_name_error').innerHTML = taskName ? '' : "<img src='/Assets/Images/warning_icon.png' width='15' height='15' /> Name is required.";
+    document.getElementById('task_duration_error').innerHTML = taskDuration ? '' : "<img src='/Assets/Images/warning_icon.png' width='15' height='15' /> Duration is required.";
+    document.getElementById('task_time_error').innerHTML = taskTime ? '' : "<img src='/Assets/Images/warning_icon.png' width='15' height='15' /> Time is required.";
 
-	//Validate task name
-	if (!taskName){
-	document.getElementById('task_name_error').innerHTML = "<img src='/Assets/Images/warning_icon.png' alt='warning icon' width='15' height='15' /> Name is required.";
-	}
+    if (!taskName || !taskDuration || !taskTime) return;
 
-	//Validate task duration
-	if (!taskDuration){
-	document.getElementById('task_duration_error').innerHTML = "<img src='/Assets/Images/warning_icon.png' alt='warning icon' width='15' height='15' /> Duration is required.";
-	}
+    // Load existing tasks
+    let data = JSON.parse(localStorage.getItem("tasks")) || {};
 
-	//Validate task date
-	if (!taskTime){
-	document.getElementById('task_time_error').innerHTML = "<img src='/Assets/Images/warning_icon.png' alt='warning icon' width='15' height='15' /> Time is required.";
-	}
+    // Determine next key
+    const newKey = (Object.keys(data).length + 1).toString();
 
-	if (taskName && taskDuration && taskTime){
+    // Save task as object (no array)
+    data[newKey] = {
+        taskName: taskName,
+        taskDuration: taskDuration,
+        taskTime: formattedTaskTime,
+        taskStatus: 'Incomplete'
+    };
 
-		const tasks = [{
-			'taskName': taskName,
-			'taskDuration': taskDuration,
-			'taskTime': formattedTaskTime
-		}];
+    // Store updated tasks
+    localStorage.setItem("tasks", JSON.stringify(data));
 
-		let data = JSON.parse(localStorage.getItem("tasks")) || {};
-
-		const newKey = Object.keys(data).length + 1;
-
-		data[newKey] = [{
-                        'taskName': document.getElementById('task_name').value,
-                        'taskDuration': document.getElementById('task_duration').value,
-                        'taskTime': document.getElementById('task_time').value,
-			'taskStaus': 'Incomplete',
-                }];
-
-		
-		localStorage.setItem("tasks", JSON.stringify(data));
-
-
-		//Clear input fields
-		document.getElementById('task_name_error').innerHTML = '';
-		document.getElementById('task_duration_error').innerHTML = '';
-		document.getElementById('task_time_error').innerHTML = '';
-
-		//Redirect to homepage;
-		window.location.href = '/';
-	}
-
+    // Redirect to homepage
+    window.location.href = '/';
 }
