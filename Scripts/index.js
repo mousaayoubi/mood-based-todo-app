@@ -29,9 +29,33 @@ function handleClick(){
 	}
 }
 
+//Hide cards initially
+document.getElementById('task_name_border1').style.visibility = 'hidden';
+document.getElementById('task_name_border2').style.visibility = 'hidden';
+document.getElementById('task_name_border3').style.visibility = 'hidden';
+
 //Retrieve tasks from localstorage
 const tasks = localStorage.getItem('tasks');
 const data = JSON.parse(tasks);
+
+//Show card if data exists
+if (data) {
+
+	if (Object.keys(data).length === 1){
+document.getElementById('task_name_border1').style.visibility = 'visible';
+} 
+if (Object.keys(data).length === 2){
+document.getElementById('task_name_border1').style.visibility = 'visible';
+document.getElementById('task_name_border2').style.visibility = 'visible';
+} 
+if (Object.keys(data).length === 3){
+document.getElementById('task_name_border1').style.visibility = 'visible';
+document.getElementById('task_name_border2').style.visibility = 'visible';
+document.getElementById('task_name_border3').style.visibility = 'visible';
+}
+}
+
+if (data){
 
 Object.keys(data).forEach(key => {
 
@@ -39,6 +63,8 @@ Object.keys(data).forEach(key => {
 	document.getElementById(`task_duration${key}`).innerHTML = data[key][0].taskDuration;
 	document.getElementById(`task_time${key}`).innerHTML = data[key][0].taskTime;
 });
+}
+
 
 //Handle completing a task event
 const completeTask1 = document.getElementById('check_mark1');
@@ -119,3 +145,31 @@ function handleTaskCard3(){
         window.location.href = `/Components/editTask.html?param1=${param_id}`;
 }
 
+//Delete a card
+
+const deleteCard1 = document.getElementById('task_name_border1');
+
+deleteCard1.addEventListener('click', handleDeleteCard1);
+
+function handleDeleteCard1(){
+	delete data[1];
+	localStorage.setItem('tasks', JSON.stringify(data));
+}
+
+const deleteCard2 = document.getElementById('task_name_border2');
+
+deleteCard2.addEventListener('click', handleDeleteCard2);
+
+function handleDeleteCard2(){
+        delete data[2];
+        localStorage.setItem('tasks', JSON.stringify(data));
+}
+
+const deleteCard3 = document.getElementById('task_name_border3');
+
+deleteCard3.addEventListener('click', handleDeleteCard3);
+
+function handleDeleteCard3(){
+        delete data[3];
+        localStorage.setItem('tasks', JSON.stringify(data));
+}

@@ -8,27 +8,23 @@ const urlParams = new URLSearchParams(queryString);
 
 const taskName = urlParams.get('param1');
 
-
 //First card is clicked
-if (taskName.indexOf("1")){
+
+if (taskName.includes("1")){
 
 	document.getElementById('task_name').value = tasks[1][0].taskName;
 	document.getElementById('task_duration').value = tasks[1][0].taskDuration;
 	document.getElementById('task_time').value = tasks[1][0].taskTime;
 
-}
-
 //Second card is clicked
-if (taskName.indexOf("2")){
+} elseif (taskName.includes("2")){
 
         document.getElementById('task_name').value = tasks[2][0].taskName;
         document.getElementById('task_duration').value = tasks[2][0].taskDuration;
         document.getElementById('task_time').value = tasks[2][0].taskTime;
 
-}
-
-//Third card is clicked
-if (taskName.indexOf("3")){
+//Third card is clicked 
+} elseif (taskName.includes("3")){
 
         document.getElementById('task_name').value = tasks[3][0].taskName;
         document.getElementById('task_duration').value = tasks[3][0].taskDuration;
