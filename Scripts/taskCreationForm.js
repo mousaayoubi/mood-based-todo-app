@@ -51,13 +51,14 @@ formattedTaskTime = taskTime.toLocaleString('en-US', {
 		
 		localStorage.setItem("tasks", JSON.stringify(data));
 
-		console.log(data);
-
 
 		//Clear input fields
 		document.getElementById('task_name_error').innerHTML = '';
 		document.getElementById('task_duration_error').innerHTML = '';
 		document.getElementById('task_time_error').innerHTML = '';
+
+		//Redirect to homepage;
+		window.location.href = '/';
 	}
 
 }
