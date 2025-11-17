@@ -4,9 +4,9 @@ Live URL: https://mood-based-todo-app.vercel.app/
 
 This is an app that has the below features:
 
-- Login: https://mood-based-todo-app.vercel.app/Components/loginForm.html
+- Login: http://23.88.96.135//loginForm.html
 Shows logged in user or guest. Can edit user details on profile page. Added a logout functionality.
-- Add tasks: https://mood-based-todo-app.vercel.app/Components/taskCreationForm.html
+- Add tasks: http://23.88.96.135/Components/taskCreationForm.html
 Fetch the task cards dynamically. Can complete each task when done. Can edit tasks details. Added the ability to delete tasks.
-- Specify mood: https://mood-based-todo-app.vercel.app/Components/moodSelecterForm.html
+- Specify mood: http://23.88.96.135/Components/moodSelecterForm.html
 - Show weather: TBD
