@@ -154,6 +154,8 @@ deleteCard1.addEventListener('click', handleDeleteCard1);
 function handleDeleteCard1(){
 	delete data[1];
 	localStorage.setItem('tasks', JSON.stringify(data));
+	document.getElementById('task_delete_message').innerHTML = 'Successfully deleted task card.';
+	setTimeout(function(){}, 2000);
 }
 
 const deleteCard2 = document.getElementById('task_name_border2');
@@ -163,6 +165,9 @@ deleteCard2.addEventListener('click', handleDeleteCard2);
 function handleDeleteCard2(){
         delete data[2];
         localStorage.setItem('tasks', JSON.stringify(data));
+        document.getElementById('task_delete_message').innerHTML = 'Successfully deleted task card.';
+	setTimeout(function(){}, 2000);
+
 }
 
 const deleteCard3 = document.getElementById('task_name_border3');
@@ -172,4 +177,6 @@ deleteCard3.addEventListener('click', handleDeleteCard3);
 function handleDeleteCard3(){
         delete data[3];
         localStorage.setItem('tasks', JSON.stringify(data));
+	document.getElementById('task_delete_message').innerHTML = 'Successfully deleted task card.';
+	setTimeout(function(){}, 2000);
 }

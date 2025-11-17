@@ -68,6 +68,10 @@ img#delete_bin {
 display: block;
 margin: auto;
 }
+span#task_delete_message {
+color: rgb(255,255,255);
+font-size: 0.8rem;
+}
 div#task_name_border1, div#task_name_border2, div#task_name_border3 {
 background-color: rgb(53,59,76);
 border-radius: 5px;
