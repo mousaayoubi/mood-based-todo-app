@@ -109,7 +109,7 @@ function deleteTask(id) {
     msg.textContent = "Successfully deleted task.";
     setTimeout(() => {
         msg.textContent = "";
-    }, 2000);
+    }, 3000);
 }
 
 
