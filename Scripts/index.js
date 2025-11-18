@@ -56,7 +56,7 @@ function renderTasks() {
             <img class="check_btn" src="/Assets/Images/check_mark.png" width="20" height="20" alt="complete">
 
             <div class="task_name">${task.taskName}</div>
-            <div class="task_duration">${task.taskDuration}</div>
+            <div class="task_duration">${task.taskDuration} mins</div>
             <div class="task_time">${task.taskTime}</div>
         `;
 
