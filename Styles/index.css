@@ -90,6 +90,46 @@ div#task_time1, div#task_time2, div#task_time3 {
 color: rgb(255,255,255);
 font-size: 1.5rem;
 }
+div.suggested_tasks_border {
+background-color: rgb(53, 59, 76);
+border-radius: 5px;
+padding: 35px;
+margin-bottom: 5px;
+}
+span#mood_icon {
+float: right;
+}
+span#based_on {
+float: right;
+color: grey;
+}
+span#mood1 {
+float: right;
+color: orange;
+}
+span#mood2 {
+float: right;
+color: rgb(158,255,0);
+}
+
+span#check_mark {
+float: right;
+}
+span#suggested_tasks_border_title1 {
+color: orange;
+}
+span#suggested_tasks_border_title2 {
+color: rgb(158,255,0);
+}
+span#suggested_tasks_border_duration {
+color: grey;
+}
+span#suggested_tasks_border_time {
+color: white;
+}
+span#suggested_tasks_border_hour {
+color: grey;
+}
 footer {
 color: rgb(255,255,255);
 text-align: center;
