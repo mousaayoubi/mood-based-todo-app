@@ -1,85 +1,118 @@
-
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Homepage | Mood based ToDo App | Moodana</title>
-		<link rel="icon" type="image/x-icon" href="/Assets/Images/favicon.ico">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="This is a mood based todo app. This page is about the homepage.">
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="/Styles/index.css" />
-		<!-- Link to Bootstrap for responsive design -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-	</head>
-	<body>
-		<div class="container">
-			<header>
-				<nav class="navbar">
-					<a class="navbar-brand" href="/">
-						<img src="/Assets/Images/logo.png" alt="logo" width="75" height="75" class="d-inline-block align-left" /></a>
-					<span id="welcome">Welcome <br /><span id="account">Guest</span>
-						<img src="/Assets/Images/spacing.png" alt="spacing bar" width="500" height="50" />
+<head>
+    <title>Homepage | Mood based ToDo App | Moodana</title>
+    <link rel="icon" type="image/x-icon" href="/Assets/Images/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="description" content="This is a mood-based todo app. This page shows your daily tasks.">
 
-						<a href="/Components/moodSelecterForm.html"><img src="/Assets/Images/mood.png" alt="mood selector icon" width="100" height="50" /></a>
-						<img src="/Assets/Images/weather.png" alt="weather icon" width="50" height="50" />
-						<img id="account_login" src="/Assets/Images/account.png" alt="account icon" width="50" height="50" />
-				</nav>
-			</header>
-			<div class="row">
-				<!-- First column layout -->
-				<div id="tasks" class="col">
-					<span id="tasks_title">Ready for Today?</span><br /><span id="tasks_number">You have tasks planned for today</span><span><a href="/Components/taskCreationForm.html"><img src="/Assets/Images/add_task.png" alt="add task icon" /></a><img src="/Assets/Images/complete_all.png" alt="complete all icon" /><img src="/Assets/Images/show_completed.png" alt="show completed icon" /></span>
-					<div class="row">
-						<div id="added_tasks" class="col">
-						 <div id="task_name_border1">
-							 <div class="delete_hover"><a href=""><img id="delete_bin1" src="/Assets/Images/bin.png" alt="bin icon" width="20px" height="20px" /></a></div>
-								 <img id="check_mark1" src="/Assets/Images/check_mark.png" alt="check mark icon" width="20px" height="20px" />
-							<div id="task_name1"></div>
-							<div id="task_duration1"></div>
-							<div id="task_time1"></div>
-							</div>
-							<div id="task_name_border2">
-								<div class="delete_hover"><a href=""><img id="delete_bin2" src="/Assets/Images/bin.png" alt="bin icon" width="20px" height="20px" /></a></div>
-							<img id="check_mark2" src="/Assets/Images/check_mark.png" alt="check mark icon" width="20px" height="20px" />
+    <!-- Styles -->
+    <link rel="stylesheet" href="/Styles/index.css">
 
-							<div id="task_name2"></div>
-                                                        <div id="task_duration2"></div>
-                                                        <div id="task_time2"></div>
-							</div>
-						</div>
-						<div id="added_tasks" class="col">
-							<div id="task_name_border3">
-								<div class="delete_hover"><a href=""><img id="delete_bin3" src="/Assets/Images/bin.png" alt="bin icon" width="20px" height="20px" /></a></div>
-							<img id="check_mark3" src="/Assets/Images/check_mark.png" alt="check mark icon" width="20px" height="20px" />
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
 
-							<div id="task_name3"></div>
-                                                        <div id="task_duration3"></div>
-                                                        <div id="task_time3"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Second column layout -->
-				<div id="suggested_tasks" class="col">
-					<span id="suggested_tasks_title">Suggested tasks</span><br />
-					<div class="suggested_tasks_border">
-                                                <span id="suggested_tasks_border_title1">Read a Book</span><span id="mood_icon"><img src="/Assets/Images/neutral-face_orange.png" alt="orange neutralface icon" width="30" height="30" /></span><br />
-                                                <span id="suggested_tasks_border_duration">45 mins</span><span id="based_on">Based on</span><br />
-                                                <span id="suggested_tasks_border_time">12:43 <span id="suggested_tasks_border_hour">PM</span></span><span id="mood1">Mood</span><br />
-                                                <span id="check_mark"><img src="/Assets/Images/check_mark.png" alt="check mark icon" width="20" height="20" /></span>
-                                        </div>
-					<div class="suggested_tasks_border">
-                                                <span id="suggested_tasks_border_title2">Meditation</span><span id="mood_icon"><img src="/Assets/Images/cloud_yellow.png" alt="yellow cloud icon" width="35" height="35" /></span><br />
-                                                <span id="suggested_tasks_border_duration">15 mins</span><span id="based_on">Based on</span><br />
-                                                <span id="suggested_tasks_border_time">12:43 <span id="suggested_tasks_border_hour">PM</span></span><span id="mood2">Weather - Mostly Cloudy</span><br />
-                                                <span id="check_mark"><img src="/Assets/Images/check_mark.png" alt="check mark icon" width="20" height="20" /></span>
-                                        </div>
-				</div>
-		</div>
-			<div><span id="task_delete_message"></span></div>
-			<div><span id="login_message"></span></div>
-		<footer>Moodana © 2025</footer>
-	</body>
-	<script src="/Scripts/index.js"></script>
-</html> 
+<body>
+    <div class="container">
+
+        <!-- HEADER -->
+        <header>
+            <nav class="navbar align-items-center justify-content-between">
+
+                <!-- Logo -->
+                <a class="navbar-brand" href="/">
+                    <img src="/Assets/Images/logo.png" alt="logo" width="75" height="75">
+                </a>
+
+                <!-- Welcome + Account -->
+                <div>
+                    <span id="welcome">Welcome<br>
+                        <span id="account">Guest</span>
+                    </span>
+                </div>
+
+                <img src="/Assets/Images/spacing.png" width="500" height="50" alt="spacing">
+
+                <!-- Icons -->
+                <div class="d-flex align-items-center gap-3">
+                    <a href="/Components/moodSelecterForm.html">
+                        <img src="/Assets/Images/mood.png" width="100" height="50" alt="mood icon">
+                    </a>
+
+                    <img src="/Assets/Images/weather.png" width="50" height="50" alt="weather icon">
+
+                    <img id="account_login" src="/Assets/Images/account.png" width="50" height="50"
+                        alt="account icon">
+                </div>
+            </nav>
+        </header>
+
+        <div class="row mt-4">
+
+            <!-- TASKS COLUMN -->
+            <div id="tasks" class="col">
+
+                <span id="tasks_title">Ready for Today?</span> <br>
+                <span id="tasks_number">You have tasks planned for today</span>
+
+                <!-- Add Task Icon -->
+                <span class="ms-3">
+                    <a href="/Components/taskCreationForm.html">
+                        <img src="/Assets/Images/add_task.png" alt="add task icon">
+                    </a>
+                </span>
+
+                <!-- Dynamic Tasks Container -->
+                <div id="task_container" class="row mt-3"></div>
+            </div>
+
+            <!-- SUGGESTED TASKS COLUMN -->
+            <div id="suggested_tasks" class="col">
+
+                <span id="suggested_tasks_title">Suggested tasks</span><br>
+
+                <div class="suggested_tasks_border mt-3">
+                    <span class="title">Read a Book</span>
+                    <span><img class="mood_icon" src="/Assets/Images/neutral-face_orange.png" width="30" height="30"></span><br>
+
+                    <span class="duration">45 mins</span>
+                    <span id="based_on">Based on</span><br>
+
+                    <span class="time">12:43 PM</span>
+                    <span class="mood_label">Mood</span><br>
+
+                    <span><img class="check_mark_icon" src="/Assets/Images/check_mark.png" width="20" height="20"></span>
+                </div>
+
+                <div class="suggested_tasks_border mt-3">
+                    <span class="title">Meditation</span>
+                    <span><img class="mood_icon" src="/Assets/Images/cloud_yellow.png" width="35" height="35"></span><br>
+
+                    <span class="duration">15 mins</span>
+                    <span id="based_on">Based on</span><br>
+
+                    <span class="time">12:43 PM</span>
+                    <span class="mood_label">Weather - Mostly Cloudy</span><br>
+
+                    <span><img class="check_mark_icon" src="/Assets/Images/check_mark.png" width="20" height="20"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <span id="task_delete_message"></span>
+        </div>
+
+        <div>
+            <span id="login_message"></span>
+        </div>
+
+        <footer class="mt-5 text-center">Moodana © 2025</footer>
+    </div>
+
+    <script src="/Scripts/index.js"></script>
+</body>
+</html>

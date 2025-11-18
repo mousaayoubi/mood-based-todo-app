@@ -1,72 +1,122 @@
+// ---------------------- ACCOUNT HANDLING ----------------------
+const accountName = localStorage.getItem("name");
+document.getElementById("account").textContent = accountName || "Guest";
 
-// ---------- ACCOUNT HANDLING ----------
-const name = localStorage.getItem('name');
-document.getElementById('account').innerHTML = name || 'Guest';
-
+// Login message (if used)
 document.getElementById("login_message").innerHTML = `
     <h5 class='login_message'>Login Successful</h5>
     <br />
     <h6 class='login_message'>You have been successfully logged in.</h6>
 `;
 
-document.getElementById('account_login').addEventListener('click', () => {
-    window.location.href = name ? "/Components/editProfile.html" : "/Components/loginForm.html";
+document.getElementById("account_login").addEventListener("click", () => {
+    window.location.href = accountName
+        ? "/Components/editProfile.html"
+        : "/Components/loginForm.html";
 });
 
-// ---------- TASK HANDLING ----------
-const tasks = JSON.parse(localStorage.getItem('tasks')) || {};
 
-// Hide all task cards initially
-for (let i = 1; i <= 3; i++) {
-    document.getElementById(`task_name_border${i}`).style.visibility = 'hidden';
+// ---------------------- TASK HANDLING ----------------------
+const taskContainer = document.getElementById("task_container");
+let tasks = JSON.parse(localStorage.getItem("tasks")) || {};
+
+// Render on page load
+renderTasks();
+
+
+// ---------------------- RENDER TASK CARDS ----------------------
+function renderTasks() {
+    taskContainer.innerHTML = ""; // Clear old cards
+
+    const keys = Object.keys(tasks);
+
+    document.getElementById("tasks_number").textContent =
+        keys.length > 0
+            ? `You have ${keys.length} tasks planned for today`
+            : "You have no tasks planned for today";
+
+    keys.forEach((taskId) => {
+        const task = tasks[taskId];
+
+        // Card wrapper column
+        const col = document.createElement("div");
+        col.className = "col-4 mb-4";
+
+        // Task card
+        const card = document.createElement("div");
+        card.className = "task_card";
+        card.dataset.id = taskId;
+
+        // Card content
+        card.innerHTML = `
+            <div class="delete_hover">
+                <img class="delete_btn" src="/Assets/Images/bin.png" width="20" height="20" alt="delete">
+            </div>
+
+            <img class="check_btn" src="/Assets/Images/check_mark.png" width="20" height="20" alt="complete">
+
+            <div class="task_name">${task.taskName}</div>
+            <div class="task_duration">${task.taskDuration}</div>
+            <div class="task_time">${task.taskTime}</div>
+        `;
+
+        col.appendChild(card);
+        taskContainer.appendChild(col);
+
+        // --- Click to edit ---
+        card.addEventListener("click", () => {
+            window.location.href = `/Components/editTask.html?param1=${taskId}`;
+        });
+
+        // --- Delete ---
+        card.querySelector(".delete_btn").addEventListener("click", (e) => {
+            e.stopPropagation();
+            deleteTask(taskId);
+        });
+
+        // --- Complete ---
+        card.querySelector(".check_btn").addEventListener("click", (e) => {
+            e.stopPropagation();
+            completeTask(taskId, card);
+        });
+
+        // --- Apply strike-through if already completed ---
+        if (task.taskStatus === "Complete") {
+            applyStrike(card);
+        }
+    });
 }
 
-// Show existing tasks and attach event listeners
-Object.keys(tasks).forEach(key => {
-    const task = tasks[key];
-    const card = document.getElementById(`task_name_border${key}`);
-    card.style.visibility = 'visible';
 
-    // Populate task info
-    document.getElementById(`task_name${key}`).innerHTML = task.taskName;
-    document.getElementById(`task_duration${key}`).innerHTML = task.taskDuration;
-    document.getElementById(`task_time${key}`).innerHTML = task.taskTime;
 
-    // Mark task complete
-    document.getElementById(`check_mark${key}`).addEventListener('click', (e) => {
-        e.stopPropagation();
-        task.taskStatus = 'Complete';
-        localStorage.setItem('tasks', JSON.stringify(tasks));
+// ---------------------- COMPLETE A TASK ----------------------
+function completeTask(id, card) {
+    tasks[id].taskStatus = "Complete";
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    applyStrike(card);
+}
 
-        document.getElementById(`task_name${key}`).style.textDecoration = 'line-through';
-        document.getElementById(`task_duration${key}`).style.textDecoration = 'line-through';
-        document.getElementById(`task_time${key}`).style.textDecoration = 'line-through';
-    });
 
-    // Navigate to edit page when card is clicked
-    card.addEventListener('click', () => {
-        window.location.href = `/Components/editTask.html?param1=${key}`;
-    });
 
-    // Delete button handling (assuming a delete button inside the card)
-    const deleteBtn = document.getElementById(`delete_bin${key}`);
-    if (deleteBtn) {
-        deleteBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent navigating to edit page
-            delete tasks[key];
-            localStorage.setItem('tasks', JSON.stringify(tasks));
-            card.style.visibility = 'hidden';
-            document.getElementById('task_delete_message').innerHTML = 'Successfully deleted task card.';
-        });
-	    setTimeout(() => {
- 		document.getElementById('task_delete_message').innerHTML = '';
-	    }, 2000);
-    }
+// ---------------------- DELETE A TASK ----------------------
+function deleteTask(id) {
+    delete tasks[id];
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 
-    // Strike-through completed tasks on load
-    if (task.taskStatus === 'Complete') {
-        document.getElementById(`task_name${key}`).style.textDecoration = 'line-through';
-        document.getElementById(`task_duration${key}`).style.textDecoration = 'line-through';
-        document.getElementById(`task_time${key}`).style.textDecoration = 'line-through';
-    }
-});
+    renderTasks(); // Re-render list
+
+    const msg = document.getElementById("task_delete_message");
+    msg.textContent = "Successfully deleted task.";
+    setTimeout(() => {
+        msg.textContent = "";
+    }, 2000);
+}
+
+
+
+// ---------------------- STRIKE-THROUGH STYLE ----------------------
+function applyStrike(card) {
+    card.querySelector(".task_name").style.textDecoration = "line-through";
+    card.querySelector(".task_duration").style.textDecoration = "line-through";
+    card.querySelector(".task_time").style.textDecoration = "line-through";
+}

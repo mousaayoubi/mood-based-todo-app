@@ -1,138 +1,229 @@
+/* -------------------------------------------------------------
+   GLOBAL PAGE STYLE
+------------------------------------------------------------- */
 body {
-background-color: rgb(29,30,38) !important;
-font-family: Arial !important;
+    background-color: rgb(29,30,38) !important;
+    font-family: Arial !important;
 }
+
 nav.navbar {
-justify-content: left;
+    justify-content: left;
 }
+
 span#welcome {
-color: rgb(255,255,255);
-font-size: 1rem;
+    color: rgb(255,255,255);
+    font-size: 1rem;
 }
+
 span#account {
-color: rgb(161, 164, 173);
-font-size: 0.8rem;
+    color: rgb(161,164,173);
+    font-size: 0.8rem;
 }
+
+/* -------------------------------------------------------------
+   TASK HEADER
+------------------------------------------------------------- */
 span#tasks_title {
-color: rgb(157,254,0);
+    color: rgb(157,254,0);
+    font-size: 2rem;
 }
+
 span#tasks_number {
-color: rgb(161,164,173);
-font-size: 0.5rem;
-padding-right: 50px;
+    color: rgb(161,164,173);
+    font-size: 0.8rem;
+    padding-right: 50px;
 }
+
 span#suggested_tasks_title {
-color: rgb(255,255,255);
-padding-bottom: 10px;
+    color: rgb(255,255,255);
+    padding-bottom: 10px;
 }
+
+/* -------------------------------------------------------------
+   TASKS MAIN CONTAINER
+------------------------------------------------------------- */
 div#tasks.col {
-background-color: rgb(40, 44, 56);
-border-radius: 10px;
-margin-right: 10px;
-padding-top: 10px;
+    background-color: rgb(40,44,56);
+    border-radius: 10px;
+    margin-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 20px;
 }
-div#added_tasks.col {
-padding-top: 10px;
+
+.col-4 {
+    width: 50% !important;
 }
-div#suggested_tasks.col {
-background-color: rgb(40, 44, 56);
-border-radius: 10px;
-padding-top: 10px;
+
+/* New dynamic task cards container */
+#task_container {
+    margin-top: 20px;
 }
-img#check_mark1, img#check_mark2, img#check_mark3 {
-display: block;
-margin-left: auto;
+
+/* -------------------------------------------------------------
+   DYNAMIC TASK CARDS
+------------------------------------------------------------- */
+.task_card {
+    position: relative;
+    background-color: rgb(53,59,76);
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+    transition: all 0.15s ease-in-out;
 }
-img.suggested_tasks_image {
-padding-top: 10px;
-padding-bottom: 5px;
+
+/* Hover effect like your theme */
+.task_card:hover {
+    background-color: rgb(60,66,84);
 }
-h5.login_message{
-color: rgb(255,255,255);
-text-align: right;
-font-size: 0.8rem;
+
+/* Delete icon hidden until hover */
+.delete_hover img,
+.delete_btn {
+    visibility: hidden;
 }
-h6.login_message {
-color: rgb(255,255,255);
-margin-top: -20px;
-text-align: right;
-font-size: 0.6rem;
+
+.task_card:hover .delete_hover img,
+.task_card:hover .delete_btn {
+    visibility: visible;
 }
-.delete_hover a{
-visibility: hidden;
+
+.delete_hover {
+    position: absolute;
+    top: 8px;
+    right: 8px;
 }
-.delete_hover:hover a {
-visibility: visible;
+
+.check_btn {
+    position: absolute;
+    top: 8px;
+    left: 8px;
 }
-img#delete_bin1, img#delete_bin2, img#delete_bin3 {
-display: block;
-margin: auto;
+
+/* Task text colors matching your original palette */
+.task_name {
+    color: rgb(255,255,255);
+    font-size: 0.9rem;
+    margin-top: 30px;
+    margin-bottom: 3px;
 }
-span#task_delete_message {
-color: rgb(255,255,255);
-font-size: 0.8rem;
+
+.task_duration {
+    color: rgb(138,142,152);
+    font-size: 0.7rem;
 }
-div#task_name_border1, div#task_name_border2, div#task_name_border3 {
-background-color: rgb(53,59,76);
-border-radius: 5px;
-padding: 15px;
-margin-bottom: 5px;
+
+.task_time {
+    color: rgb(255,255,255);
+    font-size: 1.3rem;
+    margin-top: 5px;
 }
-div#task_name1, div#task_name2, div#task_name3 {
-color: rgb(255,255,255);
-font-size: 0.8rem;
-}
-div#task_duration1, div#task_duration2, div#task_duration3 {
-color: rgb(138,142,152);
-font-size: 0.6rem;
-}
-div#task_time1, div#task_time2, div#task_time3 {
-color: rgb(255,255,255);
-font-size: 1.5rem;
-}
+
+/* -------------------------------------------------------------
+   SUGGESTED TASK CARDS
+------------------------------------------------------------- */
 div.suggested_tasks_border {
-background-color: rgb(53, 59, 76);
-border-radius: 5px;
-padding: 35px;
-margin-bottom: 5px;
+    background-color: rgb(53,59,76);
+    border-radius: 5px;
+    padding: 35px;
+    margin-bottom: 5px;
 }
+
 span#mood_icon {
-float: right;
+    float: right;
 }
+
 span#based_on {
-float: right;
-color: grey;
+    float: right;
+    color: grey;
 }
+
 span#mood1 {
-float: right;
-color: orange;
+    float: right;
+    color: orange;
 }
+
 span#mood2 {
-float: right;
-color: rgb(158,255,0);
+    float: right;
+    color: rgb(158,255,0);
 }
 
 span#check_mark {
-float: right;
+    float: right;
 }
+
 span#suggested_tasks_border_title1 {
-color: orange;
+    color: orange;
 }
 span#suggested_tasks_border_title2 {
-color: rgb(158,255,0);
+    color: rgb(158,255,0);
 }
+
 span#suggested_tasks_border_duration {
-color: grey;
+    color: grey;
 }
+
 span#suggested_tasks_border_time {
-color: white;
+    color: white;
 }
+
 span#suggested_tasks_border_hour {
-color: grey;
+    color: grey;
 }
+
+img.mood_icon {
+float: right;
+}
+
+img.check_mark_icon {
+float: right;
+}
+
+/* -------------------------------------------------------------
+   ACCOUNT / LOGIN
+------------------------------------------------------------- */
+h5.login_message {
+    color: rgb(255,255,255);
+    text-align: right;
+    font-size: 0.8rem;
+}
+
+h6.login_message {
+    color: rgb(255,255,255);
+    margin-top: -20px;
+    text-align: right;
+    font-size: 0.6rem;
+}
+
+/* Delete message */
+span#task_delete_message {
+    color: rgb(255,255,255);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+/* -------------------------------------------------------------
+   FOOTER
+------------------------------------------------------------- */
 footer {
-color: rgb(255,255,255);
-text-align: center;
-font-size: 0.8rem;
-padding-top: 10px;
+    color: rgb(255,255,255);
+    text-align: center;
+    font-size: 0.8rem;
+    padding-top: 10px;
+}
+
+/* -------------------------------------------------------------
+   RESPONSIVE
+------------------------------------------------------------- */
+@media (max-width: 992px) {
+    .col-4 {
+        width: 50%;
+    }
+}
+
+@media (max-width: 600px) {
+    .col-4 {
+        width: 100%;
+    }
 }
