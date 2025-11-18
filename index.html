@@ -22,20 +22,40 @@
 
 						<a href="/Components/moodSelecterForm.html"><img src="/Assets/Images/mood.png" alt="mood selector icon" width="100" height="50" /></a>
 						<img src="/Assets/Images/weather.png" alt="weather icon" width="50" height="50" />
-						<a href="/Components/loginForm.html"><img src="/Assets/Images/account.png" alt="account icon" width="50" height="50" /></a>
+						<img id="account_login" src="/Assets/Images/account.png" alt="account icon" width="50" height="50" />
 				</nav>
 			</header>
 			<div class="row">
 				<!-- First column layout -->
 				<div id="tasks" class="col">
-					<span id="tasks_title">Ready for Today?</span><br /><span id="tasks_number">You have 3 tasks planned for today</span><span><a href="/Components/taskCreationForm.html"><img src="/Assets/Images/add_task.png" alt="add task icon" /></a><img src="/Assets/Images/complete_all.png" alt="complete all icon" /><img src="/Assets/Images/show_completed.png" alt="show completed icon" /></span>
+					<span id="tasks_title">Ready for Today?</span><br /><span id="tasks_number">You have tasks planned for today</span><span><a href="/Components/taskCreationForm.html"><img src="/Assets/Images/add_task.png" alt="add task icon" /></a><img src="/Assets/Images/complete_all.png" alt="complete all icon" /><img src="/Assets/Images/show_completed.png" alt="show completed icon" /></span>
 					<div class="row">
 						<div id="added_tasks" class="col">
-							<img src="/Assets/Images/task_one.png" alt="task one card"/>
-							<img src="/Assets/Images/task_two.png" alt="task two card" />
+						 <div id="task_name_border1">
+							 <div class="delete_hover"><a href=""><img id="delete_bin1" src="/Assets/Images/bin.png" alt="bin icon" width="20px" height="20px" /></a></div>
+								 <img id="check_mark1" src="/Assets/Images/check_mark.png" alt="check mark icon" width="20px" height="20px" />
+							<div id="task_name1"></div>
+							<div id="task_duration1"></div>
+							<div id="task_time1"></div>
+							</div>
+							<div id="task_name_border2">
+								<div class="delete_hover"><a href=""><img id="delete_bin2" src="/Assets/Images/bin.png" alt="bin icon" width="20px" height="20px" /></a></div>
+							<img id="check_mark2" src="/Assets/Images/check_mark.png" alt="check mark icon" width="20px" height="20px" />
+
+							<div id="task_name2"></div>
+                                                        <div id="task_duration2"></div>
+                                                        <div id="task_time2"></div>
+							</div>
 						</div>
-						<div class="col">
-							<img src="/Assets/Images/task_three.png" alt="task three card" />
+						<div id="added_tasks" class="col">
+							<div id="task_name_border3">
+								<div class="delete_hover"><a href=""><img id="delete_bin3" src="/Assets/Images/bin.png" alt="bin icon" width="20px" height="20px" /></a></div>
+							<img id="check_mark3" src="/Assets/Images/check_mark.png" alt="check mark icon" width="20px" height="20px" />
+
+							<div id="task_name3"></div>
+                                                        <div id="task_duration3"></div>
+                                                        <div id="task_time3"></div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -46,6 +66,9 @@
 					<img class="suggested_tasks_image" src="/Assets/Images/suggested_task_two.png" alt="suggested task two card" />
 				</div>
 		</div>
+			<div><span id="task_delete_message"></span></div>
+			<div><span id="login_message"></span></div>
 		<footer>Moodana © 2025</footer>
 	</body>
+	<script src="/Scripts/index.js"></script>
 </html> 
