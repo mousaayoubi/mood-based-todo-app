@@ -1,3 +1,4 @@
+
 // ---------- ACCOUNT HANDLING ----------
 const name = localStorage.getItem('name');
 document.getElementById('account').innerHTML = name || 'Guest';
