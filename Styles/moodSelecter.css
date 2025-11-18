@@ -17,11 +17,11 @@ h4#header2 {
 color: rgb(161,164,173);
 margin-bottom: 30px;
 }
-img#mood1, img#mood2, img#mood3 {
+img#mood {
 display: block;
 margin: auto;
 }
-img#mood_selector_image{
+img#mood_selector{
 margin-top: 20px;
 }
 footer {
