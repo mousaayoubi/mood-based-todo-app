@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Login | Mood based ToDo App | Moodana</title>
+		<title>Edit Task | Mood based ToDo App | Moodana</title>
 		 <link rel="icon" type="image/x-icon" href="../Assets/Images/favicon.ico">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="This is a mood based todo app. This page is about login.">
+		<meta name="description" content="This is a mood based todo app.This page is about editing a task.">
 		<meta charset="UTF-8">
-		<link rel="stylesheet" href="/Styles/loginForm.css" />
+		<link rel="stylesheet" href="/Styles/editTask.css" />
 		<!-- Link to Bootstrap for responsive design -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -14,19 +14,19 @@
 	<body>
 		<div class="d-flex justify-content-center align-items-center vh-100">
 			<div class="container">
-				<header>
 				<a href="/"><img id="close_icon" src="/Assets/Images/close.png" alt="close icon" width="25" height="25" /></a>
-				<h3 id="header1">Login</h3>
-				</header>
-				<h1 id="header2" >Welcome Back !</h1>
-				<h4 id="header3">Please enter your details to login</h4>
-				<input id="name" class="spacing" type="text" placeholder="Name" /><br />
-				<input id="email" class="spacing" type="text" placeholder="Email" /><br /><h6 id="email_error"></h6>
-				<input id="password" class="spacing" type="password" placeholder="Password" /><br /><h6 id="password_error"></h6>
-				<button id="login" type="submit">Login</buttton>
+					<header>
+						<h3 id="header1">Edit Task</h3>
+					</header>
+				<input id="task_name" class="spacing" type="text" placeholder="Task name" /><br /><h6 id="task_name_error"></h6>
+				<input id="task_duration" class="spacing" type="text" placeholder="Duration (in minutes)" /><br /><h6 id="task_duration_error" class="task_error"></h6>
+
+				<input id="task_time" class="spacing" type="time" placeholder="--:-- --" /><br /><h6 id="task_time_error"></h6>
+				<button id="save_task" type="submit">Save Changes</buttton>
+					<div id="save_task_success"></div>
 			</div>
 		</div>
 	</body>
-	<script src="../Scripts/loginForm.js"></script>
+	<script src="../Scripts/editTask.js"></script>
 	<footer>Moodana © 2025</footer>
 </html>

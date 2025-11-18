@@ -32,6 +32,15 @@ border-block-color: rgb(0,0,0);
 width: 400px;
 height: 35px;
 }
+h6#task_name_error {
+color: rgb(255,0,0)
+}
+h6#task_duration_error {
+color: rgb(255,0,0);
+}
+h6#task_date_error {
+color: rgb(255,0,0);
+}
 footer {
 color: rgb(255,255,255);;
 text-align: center;

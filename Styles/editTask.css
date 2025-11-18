@@ -10,18 +10,11 @@ div.container {
 img#close_icon {
 float: right;
 }
-h3#header1,h1#header2 {
-color: rgb(255,255,255);
-}
-h1#header2 {
-text-align: center;
-}
-h4#header3 {
-color: rgb(141,143,149);
-text-align: center;
+h3#header1 {
+color: rgb(255,255,255);;
 margin-bottom: 15px;
 }
-button#login {
+button#save_task {
 background-color: rgb(156,251,0);
 border: none;
 width: 400px;
@@ -30,25 +23,31 @@ border-radius: 5px;
 padding-right: 75px;
 padding-left: 75px;
 }
+div#save_task_success {
+margin-top: 20px;
+color: rgb(255, 255, 255);
+text-align: left;
+}
 input.spacing {
 border-radius: 5px;
 margin-bottom: 15px;
 background-color: rgb(35,39,50);
 border-style: double;
-border-block-color: black;
+border-block-color: rgb(0,0,0);
 width: 400px;
 height: 35px;
-color: rgb(255,255,255);
-padding-left: 10px;
 }
-h6#email_error{
+h6#task_name_error {
+color: rgb(255,0,0)
+}
+h6#task_duration_error {
 color: rgb(255,0,0);
 }
-h6#password_error{
+h6#task_date_error {
 color: rgb(255,0,0);
 }
 footer {
-color: rgb(255,255,255);
+color: rgb(255,255,255);;
 text-align: center;
 font-size: 0.8rem;
 padding-top: 10px;

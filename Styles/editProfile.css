@@ -21,8 +21,19 @@ color: rgb(141,143,149);
 text-align: center;
 margin-bottom: 15px;
 }
-button#login {
+button#save_changes {
 background-color: rgb(156,251,0);
+border: none;
+width: 400px;
+height: 35px;
+border-radius: 5px;
+padding-right: 75px;
+padding-left: 75px;
+margin-bottom: 10px;
+}
+
+button#logout {
+background-color: rgb(221,82,76);
 border: none;
 width: 400px;
 height: 35px;
@@ -41,11 +52,20 @@ height: 35px;
 color: rgb(255,255,255);
 padding-left: 10px;
 }
+h6#name_error{
+color: rgb(255,0,0);
+}
 h6#email_error{
 color: rgb(255,0,0);
 }
 h6#password_error{
 color: rgb(255,0,0);
+}
+div#logout_success {
+text-align: left;
+}
+span#logout_success_message {
+color: rgb(255,255,255)
 }
 footer {
 color: rgb(255,255,255);
