@@ -180,6 +180,35 @@ img.check_mark_icon {
 float: right;
 }
 
+span.title1 {
+color: orange;
+}
+
+span.title2 {
+color: rgb(158,255,0)
+}
+
+span.duration {
+color: grey;
+}
+
+span.time {
+color: white;
+}
+
+span.mood_label1 {
+color: orange;
+float: right;
+}
+
+span.mood_label2 {
+color: rgb(158,255,0);
+float: right;
+}
+
+span.time_hour {
+color: grey;
+}
 /* -------------------------------------------------------------
    ACCOUNT / LOGIN
 ------------------------------------------------------------- */
