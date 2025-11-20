@@ -74,7 +74,7 @@ div#tasks.col {
 }
 
 .task_card_completed {	
-    position: relative;
+    display: block;
     background-color: rgb(53,59,76);
     border-radius: 5px;
     padding: 10px;
@@ -247,6 +247,7 @@ span#task_delete_message {
 
 /* Completed task card */
 div.completed_task_card {
+display: block;
 width: 300px;
 background-color: rgb(53, 59, 76);
 border-radius: 5px;
