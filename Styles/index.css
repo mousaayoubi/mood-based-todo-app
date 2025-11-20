@@ -267,6 +267,13 @@ border-radius: 5px;
 padding: 5px;
 border: none;
 }
+
+/* Completed tasks title */
+div#completed_tasks_title {
+color: rgb(158,255,0);
+font-size: 1rem;
+margin-bottom: 10px;
+}
 /* -------------------------------------------------------------
    FOOTER
 ------------------------------------------------------------- */

@@ -133,6 +133,8 @@ renderCompletedTasks();
 }
 
 function renderCompletedTasks(){
+let completedTasksTitle = document.getElementById("completed_tasks_title");
+completedTasksTitle.innerHTML = 'Completed Tasks';
 let completedTasksContainer = document.getElementById("completed_tasks_container");
 	let tasks = JSON.parse(localStorage.getItem("tasks")) || {};
 
