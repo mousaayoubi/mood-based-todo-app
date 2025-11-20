@@ -78,12 +78,15 @@ function renderTasks() {
         card.querySelector(".check_btn").addEventListener("click", (e) => {
             e.stopPropagation();
             completeTask(taskId, card);
+
         });
 
         // --- Apply strike-through if already completed ---
-        if (task.taskStatus === "Complete") {
+        if (task.taskStatus === "backlog") {
             applyStrike(card);
-        }
+		document.querySelectorAll('.task_card').forEach( e => e.remove(
+		));
+	};
     });
 }
 
@@ -91,7 +94,7 @@ function renderTasks() {
 
 // ---------------------- COMPLETE A TASK ----------------------
 function completeTask(id, card) {
-    tasks[id].taskStatus = "Complete";
+    tasks[id].taskStatus = "backlog";
     localStorage.setItem("tasks", JSON.stringify(tasks));
     applyStrike(card);
 }
