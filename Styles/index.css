@@ -232,6 +232,28 @@ span#task_delete_message {
     text-align: center;
 }
 
+/* Completed task card */
+div.completed_task_card {
+width: 300px;
+background-color: rgb(53, 59, 76);
+border-radius: 5px;
+padding: 10px;
+margin-bottom: 5px;
+}
+
+div.completed_task_card_title {
+color: rgb(158,255,0);
+font-size: 1rem;
+margin-bottom: 10px;
+}
+
+/* Button completed tasks */
+button#completed_tasks_button {
+background-color: rgb(158,255,0);
+border-radius: 5px;
+padding: 5px;
+border: none;
+}
 /* -------------------------------------------------------------
    FOOTER
 ------------------------------------------------------------- */
