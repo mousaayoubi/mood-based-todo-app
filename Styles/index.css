@@ -73,6 +73,19 @@ div#tasks.col {
     transition: all 0.15s ease-in-out;
 }
 
+.task_card_completed {	
+    position: relative;
+    background-color: rgb(53,59,76);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    width: 300px;
+
+    transition: all 0.15s ease-in-out;
+}
+
+
 /* Hover effect like your theme */
 .task_card:hover {
     background-color: rgb(60,66,84);

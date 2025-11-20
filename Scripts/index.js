@@ -123,3 +123,43 @@ function applyStrike(card) {
     card.querySelector(".task_duration").style.textDecoration = "line-through";
     card.querySelector(".task_time").style.textDecoration = "line-through";
 }
+
+completedTasks = document.getElementById('completed_tasks_button');
+
+completedTasks.addEventListener('click', handleCompletedTasks);
+
+function handleCompletedTasks(){
+renderCompletedTasks();
+}
+
+function renderCompletedTasks(){
+let completedTasksContainer = document.getElementById("completed_tasks_container");
+	let tasks = JSON.parse(localStorage.getItem("tasks")) || {};
+
+	completedTasksContainer.innerHTML = '';
+
+	const keys = Object.keys(tasks);
+
+	keys.forEach((taskId) => {
+	
+	const task = tasks[taskId];
+
+	if (task.taskStatus === 'backlog') {
+	const col = document.createElement("div");
+		col.className = "col-1";
+	const card = document.createElement("div");
+		card.className = "task_card_completed"
+		card.dataset.id = taskId;
+
+		card.innerHTML = `
+		<div class="task_name">${task.taskName}</div>
+		<div class="task_duration">${task.taskDuration}</div>
+		<div class="task_time">${task.taskTime}</div>
+		`;
+	col.appendChild(card);
+	completedTasksContainer.appendChild(col);
+	applyStrike(card);
+	}
+	});
+
+}
