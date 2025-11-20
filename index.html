@@ -44,8 +44,7 @@
 
                     <img src="/Assets/Images/weather.png" width="50" height="50" alt="weather icon">
 
-                    <img id="account_login" src="/Assets/Images/account.png" width="50" height="50"
-                        alt="account icon">
+                    <img id="account_login" src="/Assets/Images/account.png" width="50" height="50" alt="account icon">
                 </div>
             </nav>
         </header>
@@ -58,14 +57,19 @@
                 <span id="tasks_title">Ready for Today?</span> <br>
                 <span id="tasks_number">You have tasks planned for today</span>
 
-                <!-- Add Task Icon -->
+                <!-- Add Task Icon + Completed Toggle -->
                 <span class="ms-3">
                     <a href="/Components/taskCreationForm.html">
-                        <img src="/Assets/Images/add_task.png" alt="add task icon"></a>
-		    <span><button id="completed_tasks_button">Show Completed</button></span>
+                        <img src="/Assets/Images/add_task.png" alt="add task icon">
+                    </a>
+
+                    <!-- Toggle Button -->
+                    <button id="completed_tasks_button" class="btn btn-outline-secondary btn-sm ms-2">
+                        Show Completed
+                    </button>
                 </span>
 
-                <!-- Dynamic Tasks Container -->
+                <!-- Dynamic Active Tasks -->
                 <div id="task_container" class="row mt-3"></div>
             </div>
 
@@ -81,7 +85,7 @@
                     <span class="duration">45 mins</span>
                     <span id="based_on">Based on</span><br>
 
-		    <span class="time">12:43 <span class="time_hour">PM</span></span>
+                    <span class="time">12:43 <span class="time_hour">PM</span></span>
                     <span class="mood_label1">Mood</span><br>
 
                     <span><img class="check_mark_icon" src="/Assets/Images/check_mark.png" width="20" height="20"></span>
@@ -94,14 +98,16 @@
                     <span class="duration">15 mins</span>
                     <span id="based_on">Based on</span><br>
 
-		    <span class="time">12:43 <span class="time_hour">PM</span></span>
+                    <span class="time">12:43 <span class="time_hour">PM</span></span>
                     <span class="mood_label2">Weather - Mostly Cloudy</span><br>
 
                     <span><img class="check_mark_icon" src="/Assets/Images/check_mark.png" width="20" height="20"></span>
                 </div>
-		<div id="completed_tasks_title"></div>
-		<div id="completed_tasks_container"></div>
-	    </div>
+
+                <!-- COMPLETED TASKS SECTION (Initially Empty) -->
+                <div id="completed_tasks_title" class="mt-4"></div>
+                <div id="completed_tasks_container" class="row mt-2"></div>
+            </div>
         </div>
 
         <div class="mt-3">

@@ -2,7 +2,6 @@
 const accountName = localStorage.getItem("name");
 document.getElementById("account").textContent = accountName || "Guest";
 
-// Login message (if used)
 document.getElementById("login_message").innerHTML = `
     <h5 class='login_message'>Login Successful</h5>
     <br />
@@ -15,20 +14,17 @@ document.getElementById("account_login").addEventListener("click", () => {
         : "/Components/loginForm.html";
 });
 
-
 // ---------------------- TASK HANDLING ----------------------
 const taskContainer = document.getElementById("task_container");
 let tasks = JSON.parse(localStorage.getItem("tasks")) || {};
 
-// Render on page load
-renderTasks();
+renderTasks(); // initial render
 
-
-// ---------------------- RENDER TASK CARDS ----------------------
+// ---------------------- RENDER ACTIVE TASKS ----------------------
 function renderTasks() {
-    taskContainer.innerHTML = ""; // Clear old cards
+    taskContainer.innerHTML = "";
 
-    const keys = Object.keys(tasks);
+    const keys = Object.keys(tasks).filter(id => tasks[id].taskStatus !== "completed");
 
     document.getElementById("tasks_number").textContent =
         keys.length > 0
@@ -38,16 +34,13 @@ function renderTasks() {
     keys.forEach((taskId) => {
         const task = tasks[taskId];
 
-        // Card wrapper column
         const col = document.createElement("div");
         col.className = "col-4 mb-4";
 
-        // Task card
         const card = document.createElement("div");
         card.className = "task_card";
         card.dataset.id = taskId;
 
-        // Card content
         card.innerHTML = `
             <div class="delete_hover">
                 <img class="delete_btn" src="/Assets/Images/bin.png" width="20" height="20" alt="delete">
@@ -63,105 +56,105 @@ function renderTasks() {
         col.appendChild(card);
         taskContainer.appendChild(col);
 
-        // --- Click to edit ---
+        // Click to edit
         card.addEventListener("click", () => {
             window.location.href = `/Components/editTask.html?param1=${taskId}`;
         });
 
-        // --- Delete ---
+        // Delete
         card.querySelector(".delete_btn").addEventListener("click", (e) => {
             e.stopPropagation();
             deleteTask(taskId);
         });
 
-        // --- Complete ---
+        // Complete
         card.querySelector(".check_btn").addEventListener("click", (e) => {
             e.stopPropagation();
-            completeTask(taskId, card);
-
+            completeTask(taskId);
         });
-
-        // --- Apply strike-through if already completed ---
-        if (task.taskStatus === "backlog") {
-            applyStrike(card);
-		document.querySelectorAll('.task_card').forEach( e => e.remove(
-		));
-	};
     });
 }
 
-
-
 // ---------------------- COMPLETE A TASK ----------------------
-function completeTask(id, card) {
-    tasks[id].taskStatus = "backlog";
+function completeTask(id) {
+    tasks[id].taskStatus = "completed";
     localStorage.setItem("tasks", JSON.stringify(tasks));
-    applyStrike(card);
+
+    renderTasks(); // refresh main list
+
+    // Refresh completed list if visible
+    if (completedVisible) renderCompletedTasks();
 }
-
-
 
 // ---------------------- DELETE A TASK ----------------------
 function deleteTask(id) {
     delete tasks[id];
     localStorage.setItem("tasks", JSON.stringify(tasks));
 
-    renderTasks(); // Re-render list
+    renderTasks();
 
     const msg = document.getElementById("task_delete_message");
     msg.textContent = "Successfully deleted task.";
-    setTimeout(() => {
-        msg.textContent = "";
-    }, 3000);
+    setTimeout(() => msg.textContent = "", 3000);
 }
 
-
-
-// ---------------------- STRIKE-THROUGH STYLE ----------------------
+// ---------------------- STRIKE-THROUGH ----------------------
 function applyStrike(card) {
     card.querySelector(".task_name").style.textDecoration = "line-through";
     card.querySelector(".task_duration").style.textDecoration = "line-through";
     card.querySelector(".task_time").style.textDecoration = "line-through";
 }
 
-completedTasks = document.getElementById('completed_tasks_button');
+// ---------------------- COMPLETED TASKS TOGGLE ----------------------
+let completedVisible = false;
 
-completedTasks.addEventListener('click', handleCompletedTasks);
+const completedTasksButton = document.getElementById("completed_tasks_button");
+completedTasksButton.addEventListener("click", toggleCompletedTasks);
 
-function handleCompletedTasks(){
-renderCompletedTasks();
+function toggleCompletedTasks() {
+    completedVisible = !completedVisible;
+
+    if (completedVisible) {
+        completedTasksButton.textContent = "Hide Completed";
+        renderCompletedTasks();
+    } else {
+        completedTasksButton.textContent = "Show Completed";
+        hideCompletedTasks();
+    }
 }
 
-function renderCompletedTasks(){
-let completedTasksTitle = document.getElementById("completed_tasks_title");
-completedTasksTitle.innerHTML = 'Completed Tasks';
-let completedTasksContainer = document.getElementById("completed_tasks_container");
-	let tasks = JSON.parse(localStorage.getItem("tasks")) || {};
+function hideCompletedTasks() {
+    document.getElementById("completed_tasks_title").innerHTML = "";
+    document.getElementById("completed_tasks_container").innerHTML = "";
+}
 
-	completedTasksContainer.innerHTML = '';
+function renderCompletedTasks() {
+    const title = document.getElementById("completed_tasks_title");
+    const container = document.getElementById("completed_tasks_container");
 
-	const keys = Object.keys(tasks);
+    title.innerHTML = "Completed Tasks";
+    container.innerHTML = "";
 
-	keys.forEach((taskId) => {
-	
-	const task = tasks[taskId];
+    const keys = Object.keys(tasks)
+        .filter(id => tasks[id].taskStatus === "completed");
 
-	if (task.taskStatus === 'backlog') {
-	const col = document.createElement("div");
-		col.className = "col-1";
-	const card = document.createElement("div");
-		card.className = "task_card_completed"
-		card.dataset.id = taskId;
+    keys.forEach((taskId) => {
+        const task = tasks[taskId];
 
-		card.innerHTML = `
-		<div class="task_name">${task.taskName}</div>
-		<div class="task_duration">${task.taskDuration}</div>
-		<div class="task_time">${task.taskTime}</div>
-		`;
-	col.appendChild(card);
-	completedTasksContainer.appendChild(col);
-	applyStrike(card);
-	}
-	});
+        const col = document.createElement("div");
+        col.className = "col-1";
 
+        const card = document.createElement("div");
+        card.className = "task_card_completed";
+
+        card.innerHTML = `
+            <div class="task_name">${task.taskName}</div>
+            <div class="task_duration">${task.taskDuration}</div>
+            <div class="task_time">${task.taskTime}</div>
+        `;
+
+        applyStrike(card);
+        col.appendChild(card);
+        container.appendChild(col);
+    });
 }
