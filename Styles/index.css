@@ -1,4 +1,3 @@
-
 /* -------------------------------------------------------------
    GLOBAL PAGE STYLE
 ------------------------------------------------------------- */
@@ -70,43 +69,37 @@ div#tasks.col {
     padding: 15px;
     margin-bottom: 10px;
     cursor: pointer;
-
     transition: all 0.15s ease-in-out;
 }
 
 .task_card_completed {	
     position: relative;
-    background-color: rgb(53,59,76);
-    border-radius: 5px;
+    background-color: rgb(53,59,76);\    border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
     cursor: pointer;
     width: 300px;
-
     transition: all 0.15s ease-in-out;
 }
 
-
-/* Hover effect like your theme */
+/* Hover effect */
 .task_card:hover {
     background-color: rgb(60,66,84);
 }
 
-/* Delete icon hidden until hover */
-.delete_hover img,
+/* Delete + hover icons fix */
 .delete_btn {
-    visibility: hidden;
-}
-
-.task_card:hover .delete_hover img,
-.task_card:hover .delete_btn {
-    visibility: visible;
-}
-
-.delete_hover {
     position: absolute;
     top: 8px;
     right: 8px;
+    width: 22px;
+    height: 22px;
+    opacity: 0;
+    transition: opacity 0.15s ease-in-out;
+}
+
+.task_card:hover .delete_btn {
+    opacity: 1;
 }
 
 .check_btn {
@@ -115,7 +108,7 @@ div#tasks.col {
     left: 8px;
 }
 
-/* Task text colors matching your original palette */
+/* Task text */
 .task_name {
     color: rgb(255,255,255);
     font-size: 0.9rem;
@@ -144,85 +137,25 @@ div.suggested_tasks_border {
     margin-bottom: 5px;
 }
 
-span#mood_icon {
-    float: right;
-}
+img.mood_icon { float: right; }
+img.check_mark_icon { float: right; }
 
-span#based_on {
-    float: right;
-    color: grey;
-}
-
-span#mood1 {
-    float: right;
-    color: orange;
-}
-
-span#mood2 {
-    float: right;
-    color: rgb(158,255,0);
-}
-
-span#check_mark {
-    float: right;
-}
-
-span#suggested_tasks_border_title1 {
-    color: orange;
-}
-span#suggested_tasks_border_title2 {
-    color: rgb(158,255,0);
-}
-
-span#suggested_tasks_border_duration {
-    color: grey;
-}
-
-span#suggested_tasks_border_time {
-    color: white;
-}
-
-span#suggested_tasks_border_hour {
-    color: grey;
-}
-
-img.mood_icon {
-float: right;
-}
-
-img.check_mark_icon {
-float: right;
-}
-
-span.title1 {
-color: orange;
-}
-
-span.title2 {
-color: rgb(158,255,0)
-}
-
-span.duration {
-color: grey;
-}
-
-span.time {
-color: white;
-}
+span.title1 { color: orange; }
+span.title2 { color: rgb(158,255,0); }
+span.duration { color: grey; }
+span.time { color: white; }
+span.time_hour { color: grey; }
 
 span.mood_label1 {
-color: orange;
-float: right;
+    color: orange;
+    float: right;
 }
 
 span.mood_label2 {
-color: rgb(158,255,0);
-float: right;
+    color: rgb(158,255,0);
+    float: right;
 }
 
-span.time_hour {
-color: grey;
-}
 /* -------------------------------------------------------------
    ACCOUNT / LOGIN
 ------------------------------------------------------------- */
@@ -248,26 +181,27 @@ span#task_delete_message {
 
 /* Completed task card */
 div.completed_task_card {
-width: 300px;
-background-color: rgb(53, 59, 76);
-border-radius: 5px;
-padding: 10px;
-margin-bottom: 5px;
+    width: 300px;
+    background-color: rgb(53, 59, 76);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 5px;
 }
 
 div#completed_tasks_title.mt-4 {
-color: rgb(158,255,0);
-font-size: 1rem;
-margin-bottom: 10px;
+    color: rgb(158,255,0);
+    font-size: 1rem;
+    margin-bottom: 10px;
 }
 
-/* Button completed tasks */
+/* Completed tasks button */
 button#completed_tasks_button {
-background-color: rgb(158,255,0);
-border-radius: 5px;
-padding: 5px;
-border: none;
+    background-color: rgb(158,255,0);
+    border-radius: 5px;
+    padding: 5px;
+    border: none;
 }
+
 /* -------------------------------------------------------------
    FOOTER
 ------------------------------------------------------------- */
@@ -282,13 +216,9 @@ footer {
    RESPONSIVE
 ------------------------------------------------------------- */
 @media (max-width: 992px) {
-    .col-4 {
-        width: 50%;
-    }
+    .col-4 { width: 50%; }
 }
 
 @media (max-width: 600px) {
-    .col-4 {
-        width: 100%;
-    }
+    .col-4 { width: 100%; }
 }
