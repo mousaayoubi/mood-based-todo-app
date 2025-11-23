@@ -24,7 +24,7 @@ renderTasks(); // initial render
 function renderTasks() {
     taskContainer.innerHTML = "";
 
-    const keys = Object.keys(tasks).filter(id => tasks[id].taskStatus !== "completed");
+    const keys = Object.keys(tasks).filter(id => tasks[id].taskStatus === "Incomplete");
 
     document.getElementById("tasks_number").textContent =
         keys.length > 0
@@ -77,7 +77,7 @@ function renderTasks() {
 
 // ---------------------- COMPLETE A TASK ----------------------
 function completeTask(id) {
-    tasks[id].taskStatus = "completed";
+    tasks[id].taskStatus = "Completed";
     localStorage.setItem("tasks", JSON.stringify(tasks));
 
     renderTasks(); // refresh main list
@@ -136,7 +136,7 @@ function renderCompletedTasks() {
     container.innerHTML = "";
 
     const keys = Object.keys(tasks)
-        .filter(id => tasks[id].taskStatus === "completed");
+        .filter(id => tasks[id].taskStatus === "Completed");
 
     keys.forEach((taskId) => {
         const task = tasks[taskId];
