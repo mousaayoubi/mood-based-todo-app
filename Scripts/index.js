@@ -142,7 +142,7 @@ function renderCompletedTasks() {
         const task = tasks[taskId];
 
         const col = document.createElement("div");
-        col.className = "col-12 mb-3";
+        col.className = "col-12";
 
         const card = document.createElement("div");
         card.className = "task_card_completed";
