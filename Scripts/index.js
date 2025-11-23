@@ -77,7 +77,7 @@ function renderTasks() {
 
 // ---------------------- COMPLETE A TASK ----------------------
 function completeTask(id) {
-    tasks[id].taskStatus = "Completed";
+    tasks[id].taskStatus = "Backlog";
     localStorage.setItem("tasks", JSON.stringify(tasks));
 
     renderTasks(); // refresh main list
@@ -136,7 +136,7 @@ function renderCompletedTasks() {
     container.innerHTML = "";
 
     const keys = Object.keys(tasks)
-        .filter(id => tasks[id].taskStatus === "Completed");
+        .filter(id => tasks[id].taskStatus === "Backlog");
 
     keys.forEach((taskId) => {
         const task = tasks[taskId];
