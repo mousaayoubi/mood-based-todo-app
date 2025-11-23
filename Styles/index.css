@@ -202,6 +202,16 @@ button#completed_tasks_button {
     border: none;
 }
 
+/* Based on */
+span.based_on {
+color: grey;
+display: block;
+text-align: right;
+margin-right: 5px;
+margin-top: -10px;
+margin-bottom: -20px;
+}
+
 /* -------------------------------------------------------------
    FOOTER
 ------------------------------------------------------------- */
