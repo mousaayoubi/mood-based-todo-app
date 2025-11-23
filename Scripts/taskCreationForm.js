@@ -24,8 +24,12 @@ function clickHandleCreateTask() {
     let data = JSON.parse(localStorage.getItem("tasks")) || {};
 
     // Determine next key
-    const newKey = (Object.keys(data).length + 1).toString();
+    const keys = Object.keys(data);
+	const newKey = keys.length === 0
+    	? "1"
+    	: (Math.max(...keys.map(Number)) + 1).toString();
 
+	console.log(newKey);
     // Save task as object (no array)
     data[newKey] = {
         taskName: taskName,
