@@ -1,13 +1,21 @@
 const output = document.getElementById('weather-output');
 
-const weather = localStorage.getItem("weather");
+const weatherData = localStorage.getItem("weather");
 
-const weather_json = JSON.parse(weather);
+if (weatherData) {
+    const weather = JSON.parse(weatherData);
 
-output.innerHTML = `
-<img id="weather_icon" alt="weather icon" width="100" height="100" src="https:${weather_json.icon}" alt="icon"></p>
-                    <p id="current_temperature">${weather_json.temp_c}°C</p>
-                    <p id="current_condition">${weather_json.condition}</p>
-                    <p id="current_humidity">Humidity: ${weather_json.humidity}%</p>;
-`
+    // Get the template script
+    const source = document.getElementById("weather-template").innerHTML;
 
+    // Compile the template
+    const template = Handlebars.compile(source);
+
+    // Render template with data
+    const html = template(weather);
+
+    // Insert into DOM
+    output.innerHTML = html;
+} else {
+    output.innerHTML = "<p>No weather data available.</p>";
+}

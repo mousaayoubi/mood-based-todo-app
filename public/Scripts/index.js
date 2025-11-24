@@ -1,3 +1,24 @@
+// ---------------------  ACCOUNT LOGIN ----------------------
+const accountName = localStorage.getItem("name"); // get account from localStorage
+const accountLoginBtn = document.getElementById("account_login");
+
+accountLoginBtn.addEventListener("click", () => {
+    if (accountName && accountName.trim() !== "") {
+        // User is logged in → edit profile
+        window.location.href = "/Components/editProfile.html";
+    } else {
+        // User not logged in → login form
+        window.location.href = "/Components/loginForm.html";
+    }
+});
+
+// Get the account name from localStorage
+const name = localStorage.getItem("name") || "Guest";
+
+// Update the welcome message dynamically
+const accountSpan = document.getElementById("account");
+accountSpan.textContent = name;
+
 // ---------------------- TASK HANDLING ----------------------
 let tasks = JSON.parse(localStorage.getItem("tasks")) || {};
 let completedVisible = false;
