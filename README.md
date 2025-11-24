@@ -1,12 +1,16 @@
 Moodana | Mood Based ToDo App
 
-Live URL: http://23.88.96.135/
+Live URL: https://moodana.co/
 
 This is an app that has the below features:
 
-- Login: http://23.88.96.135/Components/loginForm.html
+- Login: https://moodana.co/Components/loginForm.html
 Shows logged in user or guest. Can edit user details on profile page. Added a logout functionality.
-- Add tasks: http://23.88.96.135/Components/taskCreationForm.html
+- Add tasks: https://moodana.co/Components/taskCreationForm.html
 Fetch the task cards dynamically. Can complete each task when done. Can edit tasks details. Added the ability to delete tasks.
-- Specify mood: http://23.88.96.135/Components/moodSelecterForm.html
-- Show weather: TBD
+- Show completed tasks
+Displays the completed tasks with strike through text.
+- Suggested tasks
+- Specify mood: https://moodana.co/Components/moodSelecterForm.html
+- Show weather: https://moodana.co/Components/currentWeather.html
+Integrated app with the WeatherAPI to retrieve real-time weather conditions based on the user's location data (needs permission from user)
