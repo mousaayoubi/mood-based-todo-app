@@ -72,9 +72,10 @@ div#tasks.col {
     transition: all 0.15s ease-in-out;
 }
 
-.task_card_completed {	
+.task_card_completed {    
     position: relative;
-    background-color: rgb(53,59,76);\    border-radius: 5px;
+    background-color: rgb(53,59,76);
+    border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
     cursor: pointer;
@@ -127,6 +128,13 @@ div#tasks.col {
     margin-top: 5px;
 }
 
+.task_card_completed .task_name,
+.task_card_completed .task_duration,
+.task_card_completed .task_time {
+    text-decoration: line-through;
+    color: #aaa; /* optional: grey text for completed tasks */
+}
+
 /* -------------------------------------------------------------
    SUGGESTED TASK CARDS
 ------------------------------------------------------------- */
@@ -137,14 +145,21 @@ div.suggested_tasks_border {
     margin-bottom: 5px;
 }
 
-img.mood_icon { float: right; }
-img.check_mark_icon { float: right; }
+img.mood_icon, img.check_mark_icon {
+    float: right;
+}
+
+.mood_icon {
+    width: 24px;     
+    height: 24px;     
+    float: right;
+    margin-left: 5px; 
+}
 
 span.title1 { color: orange; }
 span.title2 { color: rgb(158,255,0); }
 span.duration { color: grey; }
-span.time { color: white; }
-span.time_hour { color: grey; }
+span.time, span.time_hour { color: white; }
 
 span.mood_label1 {
     color: orange;
@@ -154,6 +169,11 @@ span.mood_label1 {
 span.mood_label2 {
     color: rgb(158,255,0);
     float: right;
+}
+
+h5#completed_tasks_title {
+color: rgb(158, 255, 0);
+font-size: 1rem;
 }
 
 /* -------------------------------------------------------------
@@ -182,7 +202,7 @@ span#task_delete_message {
 /* Completed task card */
 div.completed_task_card {
     width: 300px;
-    background-color: rgb(53, 59, 76);
+    background-color: rgb(53,59,76);
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 5px;
@@ -204,12 +224,12 @@ button#completed_tasks_button {
 
 /* Based on */
 span.based_on {
-color: grey;
-display: block;
-text-align: right;
-margin-right: 5px;
-margin-top: -10px;
-margin-bottom: -20px;
+    color: grey;
+    display: block;
+    text-align: right;
+    margin-right: 5px;
+    margin-top: -10px;
+    margin-bottom: -20px;
 }
 
 /* -------------------------------------------------------------
@@ -231,4 +251,10 @@ footer {
 
 @media (max-width: 600px) {
     .col-4 { width: 100%; }
+}
+
+@media (max-width: 767px) {
+    .task_card {
+        width: 100%; /* ensures single column on small screens */
+    }
 }
