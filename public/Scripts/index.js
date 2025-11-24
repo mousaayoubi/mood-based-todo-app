@@ -165,5 +165,31 @@ const weatherApi = document.getElementById('weatherApi');
 weatherApi.addEventListener('click', handleWeatherApi);
 
 function handleWeatherApi(){
-window.location.href = '/Components/currentWeather.html';
+	navigator.geolocation.getCurrentPosition(async (position) => {
+
+		const lat = position.coords.latitude;
+		const lon = position.coords.longitude;
+
+		try {
+
+			const res = await fetch(`/weather?lat=${lat}&lon=${lon}`);
+			const data = await res.json();
+
+			if (res.ok) {
+
+				const weather = {
+				icon: data.current.icon,
+				temp_c: data.current.temp_c,
+				condition: data.current.condition,
+				humidity: data.current.humidity
+				}
+
+				localStorage.setItem("weather", JSON.stringify(weather));
+				window.location.href = '/Components/currentWeather.html';
+			}
+		} catch (err) {
+
+			console.log(err);
+		}
+	})
 }
