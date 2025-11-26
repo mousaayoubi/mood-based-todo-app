@@ -123,6 +123,14 @@ function renderCompletedTasks() {
 
 // ---------------------- SUGGESTED TASKS ----------------------
 function renderSuggestedTasks() {
+	//Set neutral mood as default mood if not assigned
+	
+	const mood = localStorage.getItem('mood');
+	if (!mood) {
+
+	localStorage.setItem('mood', 'mood2')
+	}
+
     const suggestedTasks = [
         {
             taskName: "Read a Book",
@@ -133,7 +141,7 @@ function renderSuggestedTasks() {
             moodIcon: "neutral-face_orange.png",
             moodWidth: 30,
             moodHeight: 30,
-            moodLabelClass: "mood_label1",
+            moodLabelClass: "mood_label2",
             moodLabel: "Mood"
         },
         {
@@ -147,8 +155,36 @@ function renderSuggestedTasks() {
             moodHeight: 35,
             moodLabelClass: "mood_label2",
             moodLabel: "Weather - Mostly Cloudy"
-        }
+        },
+	    {
+            taskName: "Go for a jog",
+            titleClass: "title3",
+            taskDuration: 15,
+            taskTime: "02:00",
+            timePeriod: "PM",
+            moodIcon: "sad-face.png",
+            moodWidth: 30,
+            moodHeight: 30,
+            moodLabelClass: "mood_label1",
+            moodLabel: "Mood"
+        },
+	    {
+            taskName: "Read a book",
+            titleClass: "title4",
+            taskDuration: 30,
+            taskTime: "09:00",
+            timePeriod: "PM",
+            moodIcon: "happy-face.png",
+            moodWidth: 30,
+            moodHeight: 30,
+            moodLabelClass: "mood_label3",
+            moodLabel: "Mood"
+        },
+
+
     ];
+
+	console.log(suggestedTasks[0].moodLabelClass);
 
     suggestedContainer.innerHTML = suggestedTemplate({ tasks: suggestedTasks });
 }

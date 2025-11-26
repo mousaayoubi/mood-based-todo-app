@@ -12,11 +12,14 @@ function handleClick(){
 
 	if (event.target.id === 'mood1'){
 		moodImage.src = '../Assets/Images/mood-selector1.png';
+		localStorage.setItem('mood', 'mood1');
 	}
 	if (event.target.id === 'mood2'){
-		 moodImage.src = '../Assets/Images/mood-selector2.png';
+		moodImage.src = '../Assets/Images/mood-selector2.png';
+		localStorage.setItem('mood', 'mood2');
 	}
 	if (event.target.id === 'mood3'){
-		 moodImage.src = '../Assets/Images/mood-selector3.png';
+		moodImage.src = '../Assets/Images/mood-selector3.png';
+		localStorage.setItem('mood', 'mood3');
 	}
 }
