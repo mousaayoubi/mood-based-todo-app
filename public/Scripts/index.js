@@ -1,27 +1,28 @@
-// ---------------------  ACCOUNT LOGIN ----------------------
-const accountName = localStorage.getItem("name"); // get account from localStorage
+// --------------------- ACCOUNT LOGIN ----------------------
 const accountLoginBtn = document.getElementById("account_login");
 
 accountLoginBtn.addEventListener("click", () => {
-    if (accountName && accountName.trim() !== "") {
-        // User is logged in → edit profile
+    const accountName = localStorage.getItem("name")?.trim();
+    if (accountName) {
         window.location.href = "/Components/editProfile.html";
     } else {
-        // User not logged in → login form
         window.location.href = "/Components/loginForm.html";
     }
 });
 
-// Get the account name from localStorage
-const name = localStorage.getItem("name") || "Guest";
-
-// Update the welcome message dynamically
+// Update the welcome message
 const accountSpan = document.getElementById("account");
+const name = localStorage.getItem("name")?.trim() || "Guest";
 accountSpan.textContent = name;
 
 // ---------------------- TASK HANDLING ----------------------
-let tasks = JSON.parse(localStorage.getItem("tasks")) || {};
+let tasksObj = JSON.parse(localStorage.getItem("tasks")) || {}; // object
 let completedVisible = false;
+
+// Convert object → array for rendering/filtering
+function getTasksArray() {
+    return Object.keys(tasksObj).map(id => ({ id, ...tasksObj[id] }));
+}
 
 // Handlebars templates
 const taskTemplate = Handlebars.compile(document.getElementById("task-template").innerHTML);
@@ -38,23 +39,21 @@ const completedTasksButton = document.getElementById("completed_tasks_button");
 
 // ---------------------- RENDER ACTIVE TASKS ----------------------
 function renderTasks() {
-    const activeTasks = Object.keys(tasks)
-        .filter(id => tasks[id].taskStatus === "Incomplete")
-        .map(id => ({ ...tasks[id], id }));
+    const tasksArray = getTasksArray();
+    const activeTasks = tasksArray.filter(t => t.taskStatus === "Incomplete");
 
     taskContainer.innerHTML = taskTemplate({ tasks: activeTasks });
 
-    // ---------------- Update task count dynamically ----------------
     tasksNumber.textContent =
         activeTasks.length > 0
             ? `You have ${activeTasks.length} task${activeTasks.length > 1 ? 's' : ''} planned for today`
             : "You have no tasks planned for today";
 
-    // Attach event listeners for edit, delete, complete
     activeTasks.forEach(task => {
         const card = taskContainer.querySelector(`.task_card[data-id="${task.id}"]`);
 
-        card.addEventListener("click", () => {
+        card.addEventListener("click", (e) => {
+            if (e.target.closest(".delete_btn") || e.target.closest(".check_btn")) return;
             window.location.href = `/Components/editTask.html?param1=${task.id}`;
         });
 
@@ -70,19 +69,21 @@ function renderTasks() {
     });
 }
 
-// ---------------------- COMPLETE A TASK ----------------------
+// ---------------------- COMPLETE TASK ----------------------
 function completeTask(id) {
-    tasks[id].taskStatus = "Backlog";
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-    renderTasks(); // <-- task count updates here
-    if (completedVisible) renderCompletedTasks();
+    if (tasksObj[id]) {
+        tasksObj[id].taskStatus = "Completed";
+        localStorage.setItem("tasks", JSON.stringify(tasksObj));
+        renderTasks();
+        if (completedVisible) renderCompletedTasks();
+    }
 }
 
-// ---------------------- DELETE A TASK ----------------------
+// ---------------------- DELETE TASK ----------------------
 function deleteTask(id) {
-    delete tasks[id];
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-    renderTasks(); // <-- task count updates here
+    delete tasksObj[id];
+    localStorage.setItem("tasks", JSON.stringify(tasksObj));
+    renderTasks();
 
     const msg = document.getElementById("task_delete_message");
     msg.textContent = "Successfully deleted task.";
@@ -94,9 +95,7 @@ completedTasksButton.addEventListener("click", toggleCompletedTasks);
 
 function toggleCompletedTasks() {
     completedVisible = !completedVisible;
-
     completedTasksButton.textContent = completedVisible ? "Hide Completed" : "Show Completed";
-
     if (completedVisible) renderCompletedTasks();
     else hideCompletedTasks();
 }
@@ -107,13 +106,11 @@ function hideCompletedTasks() {
 }
 
 function renderCompletedTasks() {
-    const completedTasks = Object.keys(tasks)
-        .filter(id => tasks[id].taskStatus === "Backlog")
-        .map(id => ({ ...tasks[id], id }));
+    const tasksArray = getTasksArray();
+    const completedTasks = tasksArray.filter(t => t.taskStatus === "Completed");
 
     if (completedTasks.length === 0) {
-        completedTitle.innerHTML = "";
-        completedContainer.innerHTML = "";
+        hideCompletedTasks();
         return;
     }
 
@@ -121,73 +118,41 @@ function renderCompletedTasks() {
     completedContainer.innerHTML = completedTemplate({ tasks: completedTasks });
 }
 
-// ---------------------- SUGGESTED TASKS ----------------------
-function renderSuggestedTasks() {
-	//Set neutral mood as default mood if not assigned
-	
-	const mood = localStorage.getItem('mood');
-	if (!mood) {
+// ---------------------- SUGGESTED TASKS BASED ON MOOD ----------------------
+function updateSuggestedTasks() {
+    const mood = localStorage.getItem("mood") || "mood2"; // default neutral
+    let suggestedTasks = [];
 
-	localStorage.setItem('mood', 'mood2')
-	}
-
-    const suggestedTasks = [
-        {
-            taskName: "Read a Book",
-            titleClass: "title1",
-            taskDuration: 45,
-            taskTime: "12:43",
-            timePeriod: "PM",
-            moodIcon: "neutral-face_orange.png",
-            moodWidth: 30,
-            moodHeight: 30,
-            moodLabelClass: "mood_label2",
-            moodLabel: "Mood"
-        },
-        {
-            taskName: "Meditation",
-            titleClass: "title2",
-            taskDuration: 15,
-            taskTime: "12:43",
-            timePeriod: "PM",
-            moodIcon: "cloud_yellow.png",
-            moodWidth: 35,
-            moodHeight: 35,
-            moodLabelClass: "mood_label2",
-            moodLabel: "Weather - Mostly Cloudy"
-        },
-	    {
-            taskName: "Go for a jog",
-            titleClass: "title3",
-            taskDuration: 15,
-            taskTime: "02:00",
-            timePeriod: "PM",
-            moodIcon: "sad-face.png",
-            moodWidth: 30,
-            moodHeight: 30,
-            moodLabelClass: "mood_label1",
-            moodLabel: "Mood"
-        },
-	    {
-            taskName: "Read a book",
-            titleClass: "title4",
-            taskDuration: 30,
-            taskTime: "09:00",
-            timePeriod: "PM",
-            moodIcon: "happy-face.png",
-            moodWidth: 30,
-            moodHeight: 30,
-            moodLabelClass: "mood_label3",
-            moodLabel: "Mood"
-        },
-
-
-    ];
-
-	console.log(suggestedTasks[0].moodLabelClass);
+    switch (mood) {
+        case "mood1": // Sad
+            suggestedTasks = [
+                { taskName: "Meditation", titleClass: "title2", taskDuration: 10, taskTime: "01:00", timePeriod: "PM", moodIcon: "sad-face.png", moodWidth: 30, moodHeight: 30, moodLabelClass: "mood_label1", moodLabel: "Mood: Low" },
+                { taskName: "Take a Short Walk", titleClass: "title3", taskDuration: 15, taskTime: "03:00", timePeriod: "PM", moodIcon: "sad-face.png", moodWidth: 30, moodHeight: 30, moodLabelClass: "mood_label1", moodLabel: "Mood: Low" }
+            ];
+            break;
+        case "mood2": // Neutral
+            suggestedTasks = [
+                { taskName: "Go for a Drive", titleClass: "title1", taskDuration: 30, taskTime: "07:00", timePeriod: "PM", moodIcon: "neutral-face_orange.png", moodWidth: 30, moodHeight: 30, moodLabelClass: "mood_label2", moodLabel: "Mood: Neutral" },
+                { taskName: "Light Cleaning", titleClass: "title2", taskDuration: 15, taskTime: "04:00", timePeriod: "PM", moodIcon: "neutral-face_orange.png", moodWidth: 30, moodHeight: 30, moodLabelClass: "mood_label2", moodLabel: "Mood: Neutral" }
+            ];
+            break;
+        case "mood3": // Happy
+            suggestedTasks = [
+                { taskName: "Go for a Jog", titleClass: "title1", taskDuration: 20, taskTime: "02:00", timePeriod: "PM", moodIcon: "happy-face.png", moodWidth: 35, moodHeight: 35, moodLabelClass: "mood_label3", moodLabel: "Mood: Happy" },
+                { taskName: "Read a Book", titleClass: "title2", taskDuration: 15, taskTime: "09:00", timePeriod: "PM", moodIcon: "happy-face.png", moodWidth: 35, moodHeight: 35, moodLabelClass: "mood_label3", moodLabel: "Mood: Happy" }
+            ];
+            break;
+        default:
+            suggestedTasks = [
+                { taskName: "Select your mood to see suggestions", titleClass: "title1", taskDuration: 0, taskTime: "", timePeriod: "", moodIcon: "", moodWidth: 0, moodHeight: 0, moodLabelClass: "", moodLabel: "" }
+            ];
+    }
 
     suggestedContainer.innerHTML = suggestedTemplate({ tasks: suggestedTasks });
 }
+
+// Expose globally so moodSelector.js can call it
+window.updateSuggestedTasks = updateSuggestedTasks;
 
 // ---------------------- WEATHER API ----------------------
 const weatherApi = document.getElementById('weatherApi');
@@ -200,25 +165,24 @@ function handleWeatherApi() {
 
         try {
             const res = await fetch(`/weather?lat=${lat}&lon=${lon}`);
+            if (!res.ok) throw new Error("Weather API error");
+
             const data = await res.json();
-
-            if (res.ok) {
-                const weather = {
-                    icon: data.current.icon,
-                    temp_c: data.current.temp_c,
-                    condition: data.current.condition,
-                    humidity: data.current.humidity
-                };
-
-                localStorage.setItem("weather", JSON.stringify(weather));
-                window.location.href = '/Components/currentWeather.html';
-            }
+            const weather = {
+                icon: data.current.icon,
+                temp_c: data.current.temp_c,
+                condition: data.current.condition,
+                humidity: data.current.humidity
+            };
+            localStorage.setItem("weather", JSON.stringify(weather));
+            window.location.href = '/Components/currentWeather.html';
         } catch (err) {
-            console.log(err);
+            console.error(err);
+            alert("Unable to fetch weather.");
         }
-    });
+    }, () => alert("Please allow location access for weather."));
 }
 
 // ---------------------- INITIAL RENDER ----------------------
 renderTasks();
-renderSuggestedTasks();
+updateSuggestedTasks();
