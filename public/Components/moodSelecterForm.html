@@ -1,41 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Mood Selector Form | Mood based ToDo App | Moodana</title>
-		 <link rel="icon" type="image/x-icon" href="../Assets/Images/favicon.ico">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="This is a mood based todo app. This page is about mood selector form.">
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="/Styles/moodSelecter.css" />
-		<!-- Link to Bootstrap for responsive design -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-	</head>
-	<body>
-		<div class="d-flex justify-content-center align-items-center vh-100">
-		<div class="container">
-			<div id="mood_selector">
-			<a href="/"><img id="close_icon" src="/Assets/Images/close.png" alt="close icon" width="25" height="25" /></a>
-			<header>
-				<h3 id="header1">How are you feeling?</h3><br />
-			</header>
-			<div class="row">
-				<div class="col-4">
-					<img id="mood1" src="/Assets/Images/sad-face.png"alt="sad face" width="25px" height="25px" />
-				</div>
-                                <div class="col-4">
-					 <img id="mood2" src="/Assets/Images/neutral-face.png"alt="neutral face" width="25px" height="25px" />
-                                </div>
-				<div class="col-4">
-					 <img id="mood3" src="/Assets/Images/happy-face.png"alt="happy face" width="25px" height="25px" />
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mood Selector | Moodana</title>
 
-                                </div>
-				<img id="mood_selector_image" src="/Assets/Images/mood-selector2.png" alt="mood selector image" height="30px" width="100%" />
-			</div>
-		</div>
-		</div>
-		</div>
-	</body>
-	<script src="../Scripts/moodSelecter.js"></script>
-        <footer>Moodana © 2025</footer>
+<link rel="icon" type="image/x-icon" href="/Assets/Images/favicon.ico">
+<link rel="stylesheet" href="/Styles/moodSelecter.css">
+
+<!-- Bootstrap (Optional) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+
+    <div class="container">
+
+        <!-- Close Button -->
+        <a href="/">
+            <img id="close_icon" src="/Assets/Images/close.png" alt="close" width="22" height="22">
+        </a>
+
+        <!-- Header -->
+        <h3 id="header1">How are you feeling?</h3>
+
+        <!-- Mood Faces Row -->
+        <div id="faces-row">
+            <img id="face1" src="/Assets/Images/sad-face.png" alt="Sad">
+            <img id="face2" src="/Assets/Images/neutral-face.png" alt="Neutral">
+            <img id="face3" src="/Assets/Images/happy-face.png" alt="Happy">
+        </div>
+
+        <!-- Mood Slider -->
+        <input type="range" id="moodSlider" min="1" max="3" step="1" value="2">
+
+    </div>
+
+</div>
+
+<footer>Moodana © 2025</footer>
+
+<script src="/Scripts/moodSelecter.js"></script>
+</body>
 </html>

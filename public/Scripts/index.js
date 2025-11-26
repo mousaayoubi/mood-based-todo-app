@@ -120,23 +120,23 @@ function renderCompletedTasks() {
 
 // ---------------------- SUGGESTED TASKS BASED ON MOOD ----------------------
 function updateSuggestedTasks() {
-    const mood = localStorage.getItem("mood") || "mood2"; // default neutral
+    const moodValue = parseInt(localStorage.getItem("mood")) || 2; // 1 = Sad, 2 = Neutral, 3 = Happy
     let suggestedTasks = [];
 
-    switch (mood) {
-        case "mood1": // Sad
+    switch (moodValue) {
+        case 1: // Sad
             suggestedTasks = [
                 { taskName: "Meditation", titleClass: "title2", taskDuration: 10, taskTime: "01:00", timePeriod: "PM", moodIcon: "sad-face.png", moodWidth: 30, moodHeight: 30, moodLabelClass: "mood_label1", moodLabel: "Mood: Low" },
                 { taskName: "Take a Short Walk", titleClass: "title3", taskDuration: 15, taskTime: "03:00", timePeriod: "PM", moodIcon: "sad-face.png", moodWidth: 30, moodHeight: 30, moodLabelClass: "mood_label1", moodLabel: "Mood: Low" }
             ];
             break;
-        case "mood2": // Neutral
+        case 2: // Neutral
             suggestedTasks = [
                 { taskName: "Go for a Drive", titleClass: "title1", taskDuration: 30, taskTime: "07:00", timePeriod: "PM", moodIcon: "neutral-face_orange.png", moodWidth: 30, moodHeight: 30, moodLabelClass: "mood_label2", moodLabel: "Mood: Neutral" },
                 { taskName: "Light Cleaning", titleClass: "title2", taskDuration: 15, taskTime: "04:00", timePeriod: "PM", moodIcon: "neutral-face_orange.png", moodWidth: 30, moodHeight: 30, moodLabelClass: "mood_label2", moodLabel: "Mood: Neutral" }
             ];
             break;
-        case "mood3": // Happy
+        case 3: // Happy
             suggestedTasks = [
                 { taskName: "Go for a Jog", titleClass: "title1", taskDuration: 20, taskTime: "02:00", timePeriod: "PM", moodIcon: "happy-face.png", moodWidth: 35, moodHeight: 35, moodLabelClass: "mood_label3", moodLabel: "Mood: Happy" },
                 { taskName: "Read a Book", titleClass: "title2", taskDuration: 15, taskTime: "09:00", timePeriod: "PM", moodIcon: "happy-face.png", moodWidth: 35, moodHeight: 35, moodLabelClass: "mood_label3", moodLabel: "Mood: Happy" }
@@ -184,5 +184,9 @@ function handleWeatherApi() {
 }
 
 // ---------------------- INITIAL RENDER ----------------------
-renderTasks();
-updateSuggestedTasks();
+document.addEventListener('DOMContentLoaded', () => {
+    renderTasks();
+
+    // Render suggested tasks based on saved mood from localStorage
+    updateSuggestedTasks();
+});

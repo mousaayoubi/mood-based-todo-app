@@ -1,46 +1,65 @@
-const moodSelector = document.getElementById('mood_selector');
-const moodImage = document.getElementById('mood_selector_image');
+/* -------------------------------------------------------------
+   ELEMENTS
+------------------------------------------------------------- */
+const slider = document.getElementById("moodSlider");
 
-moodSelector.addEventListener('click', handleClick);
+const faces = [
+    document.getElementById("face1"), // Sad
+    document.getElementById("face2"), // Neutral
+    document.getElementById("face3")  // Happy
+];
 
-function handleClick(event) {
-    if (!event.target.id) return;
 
-    // Update image and save mood
-    switch (event.target.id) {
-        case 'mood1': // Sad
-            moodImage.src = '../Assets/Images/mood-selector1.png';
-            localStorage.setItem('mood', 'mood1');
-            break;
-        case 'mood2': // Neutral
-            moodImage.src = '../Assets/Images/mood-selector2.png';
-            localStorage.setItem('mood', 'mood2');
-            break;
-        case 'mood3': // Happy
-            moodImage.src = '../Assets/Images/mood-selector3.png';
-            localStorage.setItem('mood', 'mood3');
-            break;
-        default:
-            return; // ignore other clicks
-    }
+/* -------------------------------------------------------------
+   INITIAL MOOD SETUP
+------------------------------------------------------------- */
 
-    // Update suggested tasks on index.html dynamically
-    if (window.updateSuggestedTasks) {
-        window.updateSuggestedTasks();
-    }
+// Default mood = 2 (neutral)
+if (!localStorage.getItem("mood")) {
+    localStorage.setItem("mood", "2");
 }
 
-// ---------------------- Initialize mood image ----------------------
-const currentMood = localStorage.getItem('mood') || 'mood2';
+slider.value = localStorage.getItem("mood");
 
-switch (currentMood) {
-    case 'mood1': // Sad
-        moodImage.src = '../Assets/Images/mood-selector1.png';
-        break;
-    case 'mood2': // Neutral (default)
-        moodImage.src = '../Assets/Images/mood-selector2.png';
-        break;
-    case 'mood3': // Happy
-        moodImage.src = '../Assets/Images/mood-selector3.png';
-        break;
+
+/* -------------------------------------------------------------
+   UPDATE UI BASED ON SLIDER VALUE
+------------------------------------------------------------- */
+function updateMoodUI() {
+    const value = parseInt(slider.value);
+
+    // Update face highlight
+    faces.forEach(face => face.classList.remove("selected"));
+    faces[value - 1].classList.add("selected");
+
+    // Update slider gradient
+    const percent = ((value - 1) / 2) * 100;
+    slider.style.background =
+        `linear-gradient(to right, #9dfe00 ${percent}%, #2e323d ${percent}%)`;
+
+    // Save mood to localStorage
+    localStorage.setItem("mood", value.toString());
 }
+
+
+/* -------------------------------------------------------------
+   SLIDER → FACE SYNC
+------------------------------------------------------------- */
+slider.addEventListener("input", updateMoodUI);
+
+
+/* -------------------------------------------------------------
+   FACE CLICK → SLIDER SYNC
+------------------------------------------------------------- */
+faces.forEach((face, index) => {
+    face.addEventListener("click", () => {
+        slider.value = index + 1;
+        updateMoodUI();
+    });
+});
+
+
+/* -------------------------------------------------------------
+   RUN ON LOAD
+------------------------------------------------------------- */
+updateMoodUI();

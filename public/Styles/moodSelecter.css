@@ -1,32 +1,114 @@
+/* -------------------------------------------------------------
+   GLOBAL PAGE STYLE
+------------------------------------------------------------- */
 body {
-background-color: rgb(29,30,38) !important;
-font-family: Arial !important;
+    background-color: rgb(29,30,38) !important;
+    font-family: Arial, sans-serif !important;
 }
+
+/* Centered Container */
 div.container {
-	background-color: rgb(42,47,60);
-	padding: 50px;
-	max-width: 500px;
+    background-color: rgb(42,47,60);
+    padding: 50px;
+    max-width: 500px;
+    border-radius: 12px;
 }
+
+/* Close Icon */
 img#close_icon {
-float: right;
+    float: right;
+    cursor: pointer;
 }
-h3#header1,h1#header3 {
-color: rgb(255,255,255);
+
+/* Headers */
+h3#header1, h1#header3 {
+    color: rgb(255,255,255);
 }
+
 h4#header2 {
-color: rgb(161,164,173);
-margin-bottom: 30px;
+    color: rgb(161,164,173);
+    margin-bottom: 30px;
 }
-img#mood1, img#mood2, img#mood3 {
-display: block;
-margin: auto;
+
+/* Optional image */
+img#mood_selector_image {
+    margin-top: 20px;
 }
-img#mood_selector_image{
-margin-top: 20px;
-}
+
+/* Footer */
 footer {
-color: rgb(255,255,255);
-text-align: center;
-font-size: 0.8rem;
-padding-top: 10px;
+    color: rgb(255,255,255);
+    text-align: center;
+    font-size: 0.8rem;
+    padding-top: 10px;
+}
+
+
+/* -------------------------------------------------------------
+   MOOD FACES
+------------------------------------------------------------- */
+
+#faces-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+#faces-row img {
+    width: 40px;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.25s ease, filter 0.25s ease;
+    filter: none; /* default grayscale */
+}
+
+/* SELECTED FACE → Neon Green Tint */
+#faces-row img.selected {
+    opacity: 1;
+    filter: brightness(0) saturate(100%) invert(76%) sepia(98%) saturate(338%) hue-rotate(49deg) brightness(107%) contrast(92%);
+}
+
+/* HOVER FACE → Neon Green Tint */
+#faces-row img:hover {
+    opacity: 0.9;
+    filter: brightness(0) saturate(100%) invert(76%) sepia(98%) saturate(338%) hue-rotate(49deg) brightness(107%) contrast(92%);
+}
+
+
+/* -------------------------------------------------------------
+   NEON SLIDER STYLE (Matches Screenshot)
+------------------------------------------------------------- */
+
+#moodSlider {
+    width: 100%;
+    margin-top: 10px;
+    -webkit-appearance: none;
+    height: 8px;
+    border-radius: 20px;
+    background: linear-gradient(to right, #9dfe00 50%, #2e323d 50%);
+    transition: background 0.3s ease;
+    outline: none;
+}
+
+/* Slider Thumb (WebKit) */
+#moodSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgb(29,30,38);
+    border: 3px solid #9dfe00;
+    box-shadow: 0 0 6px #9dfe00;
+    cursor: pointer;
+}
+
+/* Firefox Thumb */
+#moodSlider::-moz-range-thumb {
+    width: 26px;
+    height: 26px;
+    background: rgb(29,30,38);
+    border-radius: 50%;
+    border: 3px solid #9dfe00;
+    cursor: pointer;
 }
