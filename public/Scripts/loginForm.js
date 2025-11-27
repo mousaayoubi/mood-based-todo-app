@@ -1,38 +1,41 @@
 const loginButton = document.getElementById("login");
 
+function handleClick() {
 
-function handleClick(){
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
 
-	const name = document.getElementById('name').value;
-	const email = document.getElementById('email').value;
-	const password = document.getElementById('password').value;
+    // Reset errors
+    document.getElementById('email_error').innerHTML = "";
+    document.getElementById('password_error').innerHTML = "";
 
-	//Validate email
-	if (!email.includes('@')){
+    let valid = true;
 
-		document.getElementById('email_error').innerHTML = "<img src='/Assets/Images/warning_icon.png' alt='warning icon' width='15' height='15' /> Please enter a valid email address.";
+    // Validate email
+    if (!email.includes('@')) {
+        document.getElementById('email_error').innerHTML =
+            "<img src='/Assets/Images/warning_icon.png' width='15' height='15' /> Please enter a valid email address.";
+        valid = false;
+    }
 
-	}
+    // Validate password
+    if (password.length < 8) {
+        document.getElementById('password_error').innerHTML =
+            "<img src='/Assets/Images/warning_icon.png' width='15' height='15' /> Password must be at least 8 characters long.";
+        valid = false;
+    }
 
-	//validate password
-	if (password.length < 8){
+    // Stop if invalid
+    if (!valid) return;
 
-		document.getElementById('password_error').innerHTML = "<img src='/Assets/Images/warning_icon.png' alt='warning icon' width='15' height='15' /> Password must be at least 8 characters long.";
+    // Save to localStorage only when valid
+    localStorage.setItem("name", name);
+    localStorage.setItem("email", email);
+    localStorage.setItem("password", password);
 
-	}
-	// Save to localstorage
-	localStorage.setItem("name", name);
-	localStorage.setItem("email", email);
-	localStorage.setItem("password", password);
-
-	//if lgon successful Redirect to homepage
-        if (email.includes('@') && password.length > 8){
-	window.location.href="/";
-
-	}
-
-	document.getElementById('account').innerHTML = localStorage.getItem('name');
-
+    // Redirect to home
+    window.location.href = "/";
 }
 
-loginButton.addEventListener('click', handleClick);
+loginButton.addEventListener("click", handleClick);

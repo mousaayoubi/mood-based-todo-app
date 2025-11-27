@@ -126,8 +126,8 @@ function updateSuggestedTasks() {
     switch (moodValue) {
         case 1: // Sad
             suggestedTasks = [
-                { taskName: "Meditation", titleClass: "title2", taskDuration: 10, taskTime: "01:00", timePeriod: "PM", moodIcon: "sad-face.png", moodWidth: 30, moodHeight: 30, moodLabelClass: "mood_label1", moodLabel: "Mood: Low" },
-                { taskName: "Take a Short Walk", titleClass: "title3", taskDuration: 15, taskTime: "03:00", timePeriod: "PM", moodIcon: "sad-face.png", moodWidth: 30, moodHeight: 30, moodLabelClass: "mood_label1", moodLabel: "Mood: Low" }
+                { taskName: "Meditation", titleClass: "title1", taskDuration: 10, taskTime: "01:00", timePeriod: "PM", moodIcon: "sad-face-orange.png", moodWidth: 30, moodHeight: 30, moodLabelClass: "mood_label1", moodLabel: "Mood: Low" },
+                { taskName: "Take a Short Walk", titleClass: "title2", taskDuration: 15, taskTime: "03:00", timePeriod: "PM", moodIcon: "sad-face-orange.png", moodWidth: 30, moodHeight: 30, moodLabelClass: "mood_label1", moodLabel: "Mood: Low" }
             ];
             break;
         case 2: // Neutral
@@ -138,8 +138,8 @@ function updateSuggestedTasks() {
             break;
         case 3: // Happy
             suggestedTasks = [
-                { taskName: "Go for a Jog", titleClass: "title1", taskDuration: 20, taskTime: "02:00", timePeriod: "PM", moodIcon: "happy-face.png", moodWidth: 35, moodHeight: 35, moodLabelClass: "mood_label3", moodLabel: "Mood: Happy" },
-                { taskName: "Read a Book", titleClass: "title2", taskDuration: 15, taskTime: "09:00", timePeriod: "PM", moodIcon: "happy-face.png", moodWidth: 35, moodHeight: 35, moodLabelClass: "mood_label3", moodLabel: "Mood: Happy" }
+                { taskName: "Go for a Jog", titleClass: "title1", taskDuration: 20, taskTime: "02:00", timePeriod: "PM", moodIcon: "happy-face-orange.png", moodWidth: 35, moodHeight: 35, moodLabelClass: "mood_label3", moodLabel: "Mood: Happy" },
+                { taskName: "Read a Book", titleClass: "title2", taskDuration: 15, taskTime: "09:00", timePeriod: "PM", moodIcon: "happy-face-orange.png", moodWidth: 35, moodHeight: 35, moodLabelClass: "mood_label3", moodLabel: "Mood: Happy" }
             ];
             break;
         default:

@@ -127,18 +127,35 @@
         {{/each}}
     </script>
 
-    <!-- Suggested Task Template -->
+    <!-- ⭐ Updated Suggested Task Template -->
     <script id="suggested-task-template" type="text/x-handlebars-template">
         {{#each tasks}}
         <div class="suggested_tasks_border p-2 mb-3 border rounded">
-            <span class="{{titleClass}}">{{taskName}}</span>
-            {{#if moodIcon}}
-            <img class="mood_icon ms-2" src="/Assets/Images/{{moodIcon}}" width="{{moodWidth}}" height="{{moodHeight}}" alt="mood icon">
-            {{/if}}
-            <br>
-            <span class="duration">{{taskDuration}} mins</span><br>
-            <span class="time">{{taskTime}} <span class="time_hour">{{timePeriod}}</span></span>
-            <span class="{{moodLabelClass}}">{{moodLabel}}</span>
+
+            <div class="suggested_layout">
+
+                <!-- LEFT COLUMN -->
+                <div class="left_col">
+                    <span class="{{titleClass}}">{{taskName}}</span><br>
+                    <span class="duration">{{taskDuration}} mins</span><br><br>
+                    <span class="time">{{taskTime}} <span class="time_hour">{{timePeriod}}</span></span>
+                </div>
+
+                <!-- RIGHT COLUMN -->
+                <div class="right_col">
+                    {{#if moodIcon}}
+                    <img class="mood_icon" src="/Assets/Images/{{moodIcon}}" width="{{moodWidth}}" height="{{moodHeight}}" alt="mood icon">
+                    {{/if}}
+
+                    <span class="based_on">Based on</span><br>
+                    <span class="Mood">Mood</span>
+
+                    <img class="suggested_tasks_check_mark" src="/Assets/Images/check_mark.png"
+                         width="20" height="20" alt="check mark icon">
+                </div>
+
+            </div>
+
         </div>
         {{/each}}
     </script>
