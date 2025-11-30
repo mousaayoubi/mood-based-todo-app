@@ -1,0 +1,254 @@
+/* -------------------------------------------------------------
+   GLOBAL PAGE STYLE
+------------------------------------------------------------- */
+body {
+    background-color: rgb(29,30,38) !important;
+    font-family: Arial !important;
+}
+
+nav.navbar {
+    justify-content: left;
+}
+
+span#welcome {
+    color: #fff;
+    font-size: 1rem;
+}
+
+span#account {
+    color: rgb(161,164,173);
+    font-size: 0.8rem;
+}
+
+/* -------------------------------------------------------------
+   TASK HEADER
+------------------------------------------------------------- */
+span#tasks_title {
+    color: rgb(157,254,0);
+    font-size: 2rem;
+}
+
+span#tasks_number {
+    color: rgb(161,164,173);
+    font-size: 0.8rem;
+    padding-right: 50px;
+}
+
+span#suggested_tasks_title {
+    color: #fff;
+    padding-bottom: 10px;
+}
+
+/* -------------------------------------------------------------
+   TASKS MAIN CONTAINER
+------------------------------------------------------------- */
+div#tasks.col {
+    background-color: rgb(40,44,56);
+    border-radius: 10px;
+    margin-right: 10px;
+    padding: 10px 0 20px 0;
+}
+
+.col-4 {
+    width: 50% !important;
+}
+
+#task_container {
+    margin-top: 20px;
+}
+
+/* -------------------------------------------------------------
+   DYNAMIC TASK CARDS
+------------------------------------------------------------- */
+.task_card,
+.task_card_completed {
+    position: relative;
+    background-color: rgb(53,59,76);
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.task_card:hover {
+    background-color: rgb(60,66,84);
+}
+
+.task_card_completed {
+    width: 300px;
+}
+
+.delete_btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 22px;
+    height: 22px;
+    opacity: 0;
+    transition: opacity 0.15s ease-in-out;
+}
+
+.task_card:hover .delete_btn {
+    opacity: 1;
+}
+
+.check_btn {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+}
+
+.task_name {
+    color: #fff;
+    font-size: 0.9rem;
+    margin-top: 30px;
+    margin-bottom: 3px;
+}
+
+.task_duration {
+    color: rgb(138,142,152);
+    font-size: 0.7rem;
+}
+
+.task_time {
+    color: #fff;
+    font-size: 1.3rem;
+    margin-top: 5px;
+}
+
+.task_card_completed .task_name,
+.task_card_completed .task_duration,
+.task_card_completed .task_time {
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+/* -------------------------------------------------------------
+   SUGGESTED TASKS
+------------------------------------------------------------- */
+.suggested_tasks_border {
+    background-color: rgb(53,59,76);
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+/* Two-column wrapper */
+.suggested_layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* LEFT column */
+.left_col {
+    flex: 1;
+}
+
+/* RIGHT column */
+.right_col {
+    width: 90px;
+    text-align: right;
+    position: relative;
+    padding-bottom: 26px;  
+}
+
+/* Mood icon */
+.mood_icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 5px;
+}
+
+/* Based on & Mood */
+span.based_on {
+    color: grey;
+    display: block;
+    margin-top: 5px;
+}
+
+span.Mood {
+    color: orange;
+    font-weight: bold;
+}
+
+/* Checkmark */
+.suggested_tasks_check_mark {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 20px;
+    height: 20px;
+}
+
+/* Duration & time */
+span.duration { color: grey; }
+span.time, span.time_hour { color: #fff; }
+
+/* Title colors */
+span.title1 { color: rgb(158,255,0); }
+span.title2 { color: orange; }
+
+/* -------------------------------------------------------------
+   COMPLETED TASKS
+------------------------------------------------------------- */
+h5#completed_tasks_title {
+    color: rgb(158,255,0);
+    font-size: 1rem;
+}
+
+span#task_delete_message {
+    color: #fff;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+div.completed_task_card {
+    width: 300px;
+    background-color: rgb(53,59,76);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+div#completed_tasks_title.mt-4 {
+    color: rgb(158,255,0);
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+button#completed_tasks_button {
+    background-color: rgb(158,255,0);
+    border-radius: 5px;
+    padding: 5px;
+    border: none;
+}
+
+/* -------------------------------------------------------------
+   FOOTER
+------------------------------------------------------------- */
+footer {
+    color: #fff;
+    text-align: center;
+    font-size: 0.8rem;
+    padding-top: 10px;
+}
+
+/* -------------------------------------------------------------
+   RESPONSIVE
+------------------------------------------------------------- */
+@media (max-width: 992px) {
+    .col-4 { width: 50%; }
+}
+
+@media (max-width: 600px) {
+    .col-4 { width: 100%; }
+}
+
+@media (max-width: 767px) {
+    .task_card {
+        width: 100%;
+    }
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage | Mood Based ToDo App | Moodana</title>
+    <link rel="icon" type="image/x-icon" href="/Assets/Images/favicon.ico">
+    <meta name="description" content="Mood-based todo app. This page shows your daily tasks.">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/Styles/index.css">
+
+    <!-- Handlebars -->
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+</head>
+<body>
+<main class="container py-3">
+
+    <!-- HEADER -->
+    <header class="mb-4">
+        <nav class="navbar align-items-center justify-content-between">
+            <!-- Logo -->
+            <a class="navbar-brand" href="/">
+                <img src="/Assets/Images/logo.png" alt="logo" width="75" height="75">
+            </a>
+
+            <!-- Welcome + Account -->
+            <div>
+                <span id="welcome">Welcome<br>
+                    <span id="account">Guest</span>
+                </span>
+            </div>
+
+            <div class="flex-grow-1"></div>
+
+            <!-- Icons -->
+            <div class="d-flex align-items-center gap-3">
+                <a href="/Components/moodSelecterForm.html">
+                    <img src="/Assets/Images/mood.png" width="100" height="50" alt="mood icon">
+                </a>
+
+                <img id="weatherApi" src="/Assets/Images/weather.png" width="50" height="50" alt="weather icon">
+
+                <img id="account_login" src="/Assets/Images/account.png" width="50" height="50" alt="account icon">
+            </div>
+        </nav>
+    </header>
+
+    <!-- LOGIN MESSAGE -->
+    <div class="mb-3">
+        <span id="login_message"></span>
+    </div>
+
+    <div class="row">
+
+        <!-- TASKS COLUMN (LEFT) -->
+        <section id="tasks" class="col-md-6 mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <div>
+                    <span id="tasks_title">Ready for Today?</span><br>
+                    <span id="tasks_number">You have tasks planned for today</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <a href="/Components/taskCreationForm.html">
+                        <img src="/Assets/Images/add_task.png" alt="add task icon" height="35">
+                    </a>
+                    <button id="completed_tasks_button" class="btn btn-secondary btn-sm">Show Completed</button>
+                </div>
+            </div>
+
+            <!-- Active Tasks -->
+            <div id="task_container" class="row"></div>
+        </section>
+
+        <!-- SUGGESTED TASKS + COMPLETED TASKS COLUMN (RIGHT) -->
+        <aside id="suggested_tasks_column" class="col-md-6 mb-4">
+
+            <!-- Suggested Tasks -->
+            <span id="suggested_tasks_title">Suggested tasks</span><br>
+            <div id="suggested_tasks_container" class="mt-3"></div>
+
+            <!-- Completed Tasks (Moved here under suggested tasks) -->
+            <div class="mt-4">
+                <h5 id="completed_tasks_title"></h5>
+                <div id="completed_tasks_container" class="row"></div>
+            </div>
+
+        </aside>
+
+    </div>
+
+    <!-- DELETE MESSAGE -->
+    <div class="mb-3">
+        <span id="task_delete_message"></span>
+    </div>
+
+    <!-- ------------------ HANDLEBARS TEMPLATES ------------------ -->
+
+    <!-- Active Task Template -->
+    <script id="task-template" type="text/x-handlebars-template">
+        {{#each tasks}}
+        <div class="col-md-6 mb-3">
+            <div class="task_card p-2 border rounded" data-id="{{id}}">
+                <div class="delete_hover position-absolute top-0 end-0 m-1">
+                    <img class="delete_btn" src="/Assets/Images/bin.png" width="20" height="20" alt="delete">
+                </div>
+                <img class="check_btn mb-2" src="/Assets/Images/check_mark.png" width="20" height="20" alt="complete">
+                <div class="task_name">{{taskName}}</div>
+                <div class="task_duration">{{taskDuration}} mins</div>
+                <div class="task_time">{{taskTime}}</div>
+            </div>
+        </div>
+        {{/each}}
+    </script>
+
+    <!-- Completed Task Template -->
+    <script id="completed-task-template" type="text/x-handlebars-template">
+        {{#each tasks}}
+        <div class="col-12 mb-2">
+            <div class="task_card_completed p-2 border rounded">
+                <div class="task_name">{{taskName}}</div>
+                <div class="task_duration">{{taskDuration}} mins</div>
+                <div class="task_time">{{taskTime}}</div>
+            </div>
+        </div>
+        {{/each}}
+    </script>
+
+    <!-- Suggested Task Template -->
+    <script id="suggested-task-template" type="text/x-handlebars-template">
+        {{#each tasks}}
+        <div class="suggested_tasks_border p-2 mb-3 border rounded">
+
+            <div class="suggested_layout">
+
+                <!-- LEFT COLUMN -->
+                <div class="left_col">
+                    <span class="{{titleClass}}">{{taskName}}</span><br>
+                    <span class="duration">{{taskDuration}} mins</span><br><br>
+                    <span class="time">{{taskTime}} <span class="time_hour">{{timePeriod}}</span></span>
+                </div>
+
+                <!-- RIGHT COLUMN -->
+                <div class="right_col">
+                    {{#if moodIcon}}
+                    <img class="mood_icon" src="/Assets/Images/{{moodIcon}}" width="{{moodWidth}}" height="{{moodHeight}}" alt="mood icon">
+                    {{/if}}
+
+                    <span class="based_on">Based on</span><br>
+                    <span class="Mood">Mood</span>
+
+                    <img class="suggested_tasks_check_mark" src="/Assets/Images/check_mark.png"
+                         width="20" height="20" alt="check mark icon">
+                </div>
+
+            </div>
+
+        </div>
+        {{/each}}
+    </script>
+
+    <!-- MAIN JS -->
+    <script src="/Scripts/index.js"></script>
+
+    <!-- FOOTER -->
+    <footer class="mt-5 text-center">Moodana © 2025</footer>
+
+</main>
+</body>
+</html>
